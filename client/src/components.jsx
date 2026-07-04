@@ -1,7 +1,7 @@
 // Reusable presentational pieces shared across the five views.
 
 import {
-  MusicIcon, PlayIcon, DownloadIcon, StarIcon, QuoteIcon,
+  PlayIcon, DownloadIcon, StarIcon, QuoteIcon,
   ImageIcon, ArrowRightIcon, ArrowLeftIcon,
 } from './icons.jsx';
 
@@ -16,7 +16,6 @@ export function Header({ view, go }) {
   return (
     <header className="site-header">
       <button className="brand" onClick={() => go('home')} aria-label="Vincent Piotet — home">
-        <MusicIcon />
         Vincent Piotet
       </button>
       <nav className="site-nav">
