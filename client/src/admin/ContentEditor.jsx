@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { getContent, saveBlock } from './adminApi.js';
+import { getContent, saveBlock, getUploadConfig } from './adminApi.js';
 import { renderMarkdown } from '../markdown.js';
+import MediaField from './MediaField.jsx';
 
 // Friendly titles/blurbs for each content block.
 const BLOCK_META = {
@@ -21,7 +22,7 @@ function setIn(obj, path, value) {
   return { ...base, [head]: setIn(base[head], rest, value) };
 }
 
-function Field({ fieldKey, value, path, onChange }) {
+function Field({ fieldKey, value, path, onChange, cfg }) {
   const id = path.join('.');
 
   // Nested object → a labeled group.
@@ -30,9 +31,21 @@ function Field({ fieldKey, value, path, onChange }) {
       <fieldset className="admin-group">
         <legend>{humanize(fieldKey)}</legend>
         {Object.entries(value).map(([k, v]) => (
-          <Field key={k} fieldKey={k} value={v} path={[...path, k]} onChange={onChange} />
+          <Field key={k} fieldKey={k} value={v} path={[...path, k]} onChange={onChange} cfg={cfg} />
         ))}
       </fieldset>
+    );
+  }
+
+  // The hero portrait: upload an image or paste a key / URL.
+  if (fieldKey === 'portraitKey') {
+    return (
+      <MediaField
+        label="Hero portrait (circular photo on the home page)"
+        value={value} folder="portraits" accept="image/*"
+        uploadsEnabled={cfg?.enabled} cdnBase={cfg?.cdnBase}
+        onChange={(v) => onChange(path, v)}
+      />
     );
   }
 
@@ -84,7 +97,7 @@ function Field({ fieldKey, value, path, onChange }) {
   );
 }
 
-function BlockForm({ block }) {
+function BlockForm({ block, cfg }) {
   const meta = BLOCK_META[block.key] || { title: block.key, blurb: '' };
   const [data, setData] = useState(block.data);
   const [saving, setSaving] = useState(false);
@@ -115,7 +128,7 @@ function BlockForm({ block }) {
         {meta.blurb && <p>{meta.blurb}</p>}
       </div>
       {Object.entries(data).map(([k, v]) => (
-        <Field key={k} fieldKey={k} value={v} path={[k]} onChange={onChange} />
+        <Field key={k} fieldKey={k} value={v} path={[k]} onChange={onChange} cfg={cfg} />
       ))}
       <div className="admin-block__actions">
         <button className="btn" onClick={save} disabled={saving}>
@@ -129,9 +142,11 @@ function BlockForm({ block }) {
 
 export default function ContentEditor({ onAuthError }) {
   const [blocks, setBlocks] = useState(null);
+  const [cfg, setCfg] = useState({ enabled: false, cdnBase: '' });
   const [error, setError] = useState('');
 
   useEffect(() => {
+    getUploadConfig().then(setCfg).catch(() => {});
     getContent()
       .then((d) => setBlocks(d.blocks))
       .catch((err) => (err.status === 401 ? onAuthError() : setError(err.message)));
@@ -142,7 +157,7 @@ export default function ContentEditor({ onAuthError }) {
 
   return (
     <div className="admin-blocks">
-      {blocks.map((b) => <BlockForm key={b.key} block={b} />)}
+      {blocks.map((b) => <BlockForm key={b.key} block={b} cfg={cfg} />)}
     </div>
   );
 }

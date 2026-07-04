@@ -10,7 +10,10 @@ export default function MediaField({
   const [error, setError] = useState('');
   const inputRef = useRef(null);
 
-  const previewUrl = value && cdnBase ? `${cdnBase}/${value}` : null;
+  // Accept either a storage key (prefix the CDN) or a full pasted URL.
+  const previewUrl = value
+    ? (/^https?:\/\//.test(value) ? value : (cdnBase ? `${cdnBase}/${value}` : null))
+    : null;
 
   async function onPick(e) {
     const file = e.target.files?.[0];

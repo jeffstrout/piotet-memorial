@@ -11,7 +11,11 @@ export default function Home({ site, songs, photos, tributes, go }) {
     <div className="view-enter">
       {/* Hero — no action buttons */}
       <section className="hero">
-        <div className="hero__portrait" role="img" aria-label={`Portrait of ${person.name}`} />
+        {person.portrait ? (
+          <img className="hero__portrait" src={person.portrait} alt={`Portrait of ${person.name}`} />
+        ) : (
+          <div className="hero__portrait" role="img" aria-label={`Portrait of ${person.name}`} />
+        )}
         <Eyebrow>{person.eyebrow}</Eyebrow>
         <h1 className="hero__name">{person.name}</h1>
         <DatesRule born={person.born} died={person.died} />

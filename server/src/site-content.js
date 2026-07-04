@@ -9,12 +9,31 @@ import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { pool } from './db.js';
+import { mediaUrl } from './content.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const SEED_PATH = join(__dirname, '..', 'content', 'site.json');
 
 // The blocks that make up the site copy, in edit order.
 export const CONTENT_KEYS = ['person', 'service', 'story', 'intros'];
+
+// Merge seed defaults under a stored block so fields added later (e.g. a new
+// portraitKey) surface in the editor even for rows seeded before they existed.
+function withDefaults(seedVal, storedVal) {
+  if (seedVal && storedVal && typeof seedVal === 'object' && !Array.isArray(seedVal)
+      && typeof storedVal === 'object' && !Array.isArray(storedVal)) {
+    return { ...seedVal, ...storedVal };
+  }
+  return storedVal ?? seedVal;
+}
+
+// Resolve the hero portrait key (or a pasted full URL) to a displayable URL.
+function resolvePortrait(person) {
+  if (!person) return person;
+  const pk = person.portraitKey;
+  const portrait = pk ? (/^https?:\/\//.test(pk) ? pk : mediaUrl(pk)) : null;
+  return { ...person, portrait };
+}
 
 let seedCache = null;
 export async function loadSeed() {
@@ -26,15 +45,17 @@ export async function loadSeed() {
 // the seed. Returns the seed wholesale if the DB can't be reached.
 export async function getSite() {
   const seed = await loadSeed();
+  let site;
   try {
     const { rows } = await pool.query('SELECT key, data FROM content_blocks');
     const byKey = Object.fromEntries(rows.map((r) => [r.key, r.data]));
-    const site = {};
-    for (const key of CONTENT_KEYS) site[key] = byKey[key] ?? seed[key];
-    return site;
+    site = {};
+    for (const key of CONTENT_KEYS) site[key] = withDefaults(seed[key], byKey[key]);
   } catch {
-    return seed;
+    site = { ...seed };
   }
+  site.person = resolvePortrait(site.person);
+  return site;
 }
 
 // All blocks for the admin editor (DB value if present, else seed default).
@@ -44,7 +65,7 @@ export async function getAllBlocks() {
   const byKey = Object.fromEntries(rows.map((r) => [r.key, r]));
   return CONTENT_KEYS.map((key) => ({
     key,
-    data: byKey[key]?.data ?? seed[key],
+    data: withDefaults(seed[key], byKey[key]?.data),
     updatedAt: byKey[key]?.updated_at ?? null,
   }));
 }

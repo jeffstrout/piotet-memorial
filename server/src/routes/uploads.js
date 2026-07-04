@@ -38,7 +38,7 @@ function s3() {
   return client;
 }
 
-const ALLOWED_FOLDERS = new Set(['photos', 'videos', 'posters', 'audio', 'downloads']);
+const ALLOWED_FOLDERS = new Set(['photos', 'videos', 'posters', 'audio', 'downloads', 'portraits']);
 const safeName = (name) =>
   String(name || 'file').toLowerCase().replace(/[^a-z0-9.]+/g, '-').replace(/^-+|-+$/g, '').slice(-80) || 'file';
 
