@@ -58,13 +58,18 @@ export default function Tributes({ site, tributes, go, onSubmitted }) {
               onChange={(e) => setAuthor(e.target.value)}
               aria-label="Your name"
             />
-            <textarea
-              placeholder="Write your memory of Vincent…"
-              value={quote}
-              maxLength={1000}
-              onChange={(e) => setQuote(e.target.value)}
-              aria-label="Your memory"
-            />
+            <div>
+              <textarea
+                placeholder="Write your memory of Vincent…"
+                value={quote}
+                maxLength={1000}
+                onChange={(e) => setQuote(e.target.value)}
+                aria-label="Your memory"
+              />
+              <div className={`memory-form__count${quote.length > 900 ? ' is-warn' : ''}`} aria-hidden="true">
+                {quote.length} / 1000
+              </div>
+            </div>
             <div className="memory-form__status" role="status">{status}</div>
             <div>
               <button className="btn" type="submit" disabled={busy}>

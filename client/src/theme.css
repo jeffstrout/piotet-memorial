@@ -529,6 +529,8 @@ body {
   .tribute-grid--home { grid-template-columns: minmax(0, 400px); }
 }
 .tribute-card {
+  display: flex;
+  flex-direction: column;
   border: 1px solid var(--card-border);
   background: var(--parchment-card);
   padding: clamp(1.4rem, 2.5vw, 1.9rem);
@@ -544,6 +546,7 @@ body {
   margin: 0 0 1rem;
 }
 .tribute-card__author {
+  margin-top: auto;   /* pin the name to the bottom regardless of quote length */
   font-family: var(--font-display-caps);
   font-weight: 600;
   font-size: 0.72rem;
@@ -568,6 +571,15 @@ body {
 .memory-form input::placeholder,
 .memory-form textarea::placeholder { color: var(--on-dark-sub-2); }
 .memory-form textarea { min-height: 7rem; resize: vertical; }
+.memory-form__count {
+  text-align: right;
+  margin-top: 0.35rem;
+  font-family: var(--font-display-caps);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  color: var(--on-dark-sub-2);
+}
+.memory-form__count.is-warn { color: var(--gold-light); }
 .memory-form__status {
   font-family: var(--font-body);
   font-style: italic;
