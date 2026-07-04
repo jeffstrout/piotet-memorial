@@ -1,0 +1,28 @@
+{
+  "person": {
+    "name": "Vincent Piotet",
+    "born": 1935,
+    "died": 2026,
+    "eyebrow": "In loving memory of",
+    "tagline": "For twenty-one years he brought his guitar to the bedsides of hospice, and filled the quiet hours with music."
+  },
+  "service": {
+    "eyebrow": "Service",
+    "title": "Celebration of life",
+    "dateTime": "To be announced",
+    "location": "To be announced"
+  },
+  "story": {
+    "eyebrow": "His story",
+    "title": "A quiet life, richly played",
+    "lead": "For twenty-one years, Vincent carried his guitar into the quietest rooms of the hospice and played until the silence softened. This is the story of a man who believed music belonged at every bedside.",
+    "paragraphs": [
+      "Placeholder paragraph one. The full obituary will be written with the family. It should open with who Vincent was — where he was born, the shape of his early life, and the moment music first found him.",
+      "Placeholder paragraph two. His years of work, the people he loved, and how the guitar became a companion through all of it.",
+      "Placeholder paragraph three. The hospice years — twenty-one of them — and what it meant to play for people in their final days. The recordings he made along the way, some two hundred and fifty songs.",
+      "Placeholder paragraph four. The smaller things: his favorite songs, his habits, the Tuesdays he never missed, the way a room changed when he began to play.",
+      "Placeholder paragraph five. A closing that gathers the life together and hands it to those who remember him."
+    ],
+    "pullQuote": "He believed no one should be alone with silence."
+  }
+}

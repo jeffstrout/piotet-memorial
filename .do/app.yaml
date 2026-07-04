@@ -1,0 +1,77 @@
+# DigitalOcean App Platform spec for the Vincent Piotet Memorial.
+#
+# Architecture mirrors jeffstrout/split-flap's DO path: a static React/Vite
+# client + a Node/Express API, deployed as one App. Two additions the memorial
+# needs: a managed Postgres DB (moderated tributes) and DO Spaces + CDN (media).
+#
+# Auto-update: deploy_on_push: true — every push to `main` triggers App Platform
+# to rebuild and redeploy automatically (the hands-off behavior from split-flap,
+# done natively on DO — no Watchtower needed for a hosted web app).
+#
+# First-time setup (or after editing this file):
+#   doctl apps create --spec .do/app.yaml       # create the app
+#   doctl apps update <app-id> --spec .do/app.yaml   # apply changes
+name: piotet-memorial
+
+# ── API service (Express) ────────────────────────────────────────────────────
+services:
+  - name: api
+    github:
+      repo: jeffstrout/piotet-memorial
+      branch: main
+      deploy_on_push: true
+    source_dir: server
+    environment_slug: node-js
+    instance_count: 1
+    instance_size_slug: basic-xxs        # $5/mo — 512MB RAM, 1 vCPU
+    http_port: 3001
+    health_check:
+      http_path: /api/health
+    run_command: npm start
+    envs:
+      - key: NODE_ENV
+        scope: RUN_TIME
+        value: production
+      - key: ALLOWED_ORIGINS
+        scope: RUN_TIME
+        value: ${_self.PUBLIC_URL}
+      - key: DATABASE_URL
+        scope: RUN_TIME
+        value: ${tributes-db.DATABASE_URL}   # injected by the managed DB below
+      - key: ADMIN_TOKEN
+        scope: RUN_TIME
+        type: SECRET
+        value: EV[1:REPLACE_WITH_ENCRYPTED_SECRET]   # set via: doctl apps ... or dashboard
+      - key: MEDIA_CDN_BASE
+        scope: RUN_TIME
+        value: https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com
+    routes:
+      - path: /api
+        preserve_path_prefix: true
+
+# ── Static client (React + Vite) ─────────────────────────────────────────────
+static_sites:
+  - name: web
+    github:
+      repo: jeffstrout/piotet-memorial
+      branch: main
+      deploy_on_push: true
+    source_dir: client
+    build_command: npm install && npm run build
+    output_dir: dist
+    environment_slug: node-js
+    envs:
+      # Baked into the build so the client calls the same-origin /api.
+      - key: VITE_API_BASE
+        scope: BUILD_TIME
+        value: /api
+    routes:
+      - path: /
+    catchall_document: index.html          # SPA fallback for client-side routes
+
+# ── Managed Postgres (moderated tributes) ────────────────────────────────────
+databases:
+  - name: tributes-db
+    engine: PG
+    version: "16"
+    production: false                      # dev DB (~$7/mo); flip to true to scale up

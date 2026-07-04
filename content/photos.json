@@ -1,0 +1,17 @@
+{
+  "note": "Family-curated gallery. All media is portrait 3:4. `type` is photo|video; video tiles show a play badge and use `posterKey` for the still. Keys resolve against MEDIA_CDN_BASE (DO Spaces). Home shows the first 6 photos (no video); the Pictures page shows the full set.",
+  "photos": [
+    { "id": 1,  "type": "photo", "srcKey": "photos/01.jpg", "alt": "Vincent with his guitar" },
+    { "id": 2,  "type": "photo", "srcKey": "photos/02.jpg", "alt": "" },
+    { "id": 3,  "type": "photo", "srcKey": "photos/03.jpg", "alt": "" },
+    { "id": 4,  "type": "photo", "srcKey": "photos/04.jpg", "alt": "" },
+    { "id": 5,  "type": "photo", "srcKey": "photos/05.jpg", "alt": "" },
+    { "id": 6,  "type": "photo", "srcKey": "photos/06.jpg", "alt": "" },
+    { "id": 7,  "type": "photo", "srcKey": "photos/07.jpg", "alt": "" },
+    { "id": 8,  "type": "video", "srcKey": "videos/01.mp4", "posterKey": "photos/08.jpg", "alt": "Vincent playing in the hospice" },
+    { "id": 9,  "type": "photo", "srcKey": "photos/09.jpg", "alt": "" },
+    { "id": 10, "type": "photo", "srcKey": "photos/10.jpg", "alt": "" },
+    { "id": 11, "type": "video", "srcKey": "videos/02.mp4", "posterKey": "photos/11.jpg", "alt": "A Tuesday afternoon" },
+    { "id": 12, "type": "photo", "srcKey": "photos/12.jpg", "alt": "" }
+  ]
+}

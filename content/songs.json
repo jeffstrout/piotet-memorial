@@ -1,0 +1,23 @@
+{
+  "total": 250,
+  "note": "Sample of the 250 recorded songs. `audioKey`/`downloadKey` are relative keys resolved against MEDIA_CDN_BASE (DO Spaces). Populate with the family's real files.",
+  "downloadAllKey": "downloads/vincent-piotet-all-250-songs.zip",
+  "songs": [
+    { "index": 1,  "title": "Somewhere Over the Rainbow", "note": "A room favorite", "duration": "3:12", "audioKey": "songs/001.mp3", "downloadKey": "songs/001.mp3" },
+    { "index": 2,  "title": "You Are My Sunshine",        "note": "Sing-along",      "duration": "2:41", "audioKey": "songs/002.mp3", "downloadKey": "songs/002.mp3" },
+    { "index": 3,  "title": "Amazing Grace",              "note": "Traditional",     "duration": "4:05", "audioKey": "songs/003.mp3", "downloadKey": "songs/003.mp3" },
+    { "index": 4,  "title": "Moon River",                 "note": "Evenings",        "duration": "3:28", "audioKey": "songs/004.mp3", "downloadKey": "songs/004.mp3" },
+    { "index": 5,  "title": "What a Wonderful World",     "note": "Requested often", "duration": "2:57", "audioKey": "songs/005.mp3", "downloadKey": "songs/005.mp3" },
+    { "index": 6,  "title": "Danny Boy",                  "note": "Traditional",     "duration": "3:44", "audioKey": "songs/006.mp3", "downloadKey": "songs/006.mp3" },
+    { "index": 7,  "title": "The Tennessee Waltz",        "note": "Slow waltz",      "duration": "3:10", "audioKey": "songs/007.mp3", "downloadKey": "songs/007.mp3" },
+    { "index": 8,  "title": "Blue Skies",                 "note": "Standard",        "duration": "2:33", "audioKey": "songs/008.mp3", "downloadKey": "songs/008.mp3" },
+    { "index": 9,  "title": "Autumn Leaves",              "note": "Instrumental",    "duration": "3:52", "audioKey": "songs/009.mp3", "downloadKey": "songs/009.mp3" },
+    { "index": 10, "title": "Fly Me to the Moon",         "note": "Uptempo",         "duration": "2:48", "audioKey": "songs/010.mp3", "downloadKey": "songs/010.mp3" },
+    { "index": 11, "title": "Georgia on My Mind",         "note": "Requested often", "duration": "3:39", "audioKey": "songs/011.mp3", "downloadKey": "songs/011.mp3" },
+    { "index": 12, "title": "Unchained Melody",           "note": "Ballad",          "duration": "3:36", "audioKey": "songs/012.mp3", "downloadKey": "songs/012.mp3" },
+    { "index": 13, "title": "Stardust",                   "note": "Standard",        "duration": "4:12", "audioKey": "songs/013.mp3", "downloadKey": "songs/013.mp3" },
+    { "index": 14, "title": "Can't Help Falling in Love", "note": "Sing-along",      "duration": "2:55", "audioKey": "songs/014.mp3", "downloadKey": "songs/014.mp3" },
+    { "index": 15, "title": "The Way You Look Tonight",   "note": "Standard",        "duration": "3:18", "audioKey": "songs/015.mp3", "downloadKey": "songs/015.mp3" },
+    { "index": 16, "title": "Bridge Over Troubled Water", "note": "A room favorite", "duration": "4:30", "audioKey": "songs/016.mp3", "downloadKey": "songs/016.mp3" }
+  ]
+}
