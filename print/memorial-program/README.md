@@ -6,7 +6,11 @@ design language (see `../../Vincent-Piotet-Style-Guide.pdf`).
 ## Files
 - `program.html` — the editable source. Text lives near the top of the `<body>`.
 - `portrait.png` — the cover photo (referenced by `program.html`).
-- `Vincent-Piotet-Memorial-Program.pdf` — the print-ready output.
+- `Vincent-Piotet-Memorial-Program.pdf` — the print-ready output (both pages).
+- `Program-Page1-OUTSIDE.pdf` / `Program-Page2-INSIDE.pdf` — the two pages split
+  into single-page files, for printers that won't reliably duplex the combined
+  PDF. Print page 1, flip the sheet, print page 2 on the back, then fold.
+  Regenerate with: `pdfseparate Vincent-Piotet-Memorial-Program.pdf page-%d.pdf`
 
 ## Format
 - **11 × 8.5 in, landscape**, two 5.5 × 8.5 panels per page.
