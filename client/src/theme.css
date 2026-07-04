@@ -353,6 +353,7 @@ body {
   font-size: clamp(1.2rem, 2vw, 1.5rem);
   color: var(--parchment-ink);
   margin-top: 0.15em;
+  white-space: pre-line;   /* honor line breaks typed in the admin textarea */
 }
 
 /* ── Sections ─────────────────────────────────────────────────────────────── */
