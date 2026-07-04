@@ -11,16 +11,32 @@ import pg from 'pg';
 const { Pool } = pg;
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-const connectionString = process.env.DATABASE_URL;
+const rawUrl = process.env.DATABASE_URL;
+const isRemote = rawUrl && !/localhost|127\.0\.0\.1/.test(rawUrl);
 
-// DO's managed PG presents a cert that isn't in the default CA bundle; accept it
-// (rejectUnauthorized:false) only when talking to a remote (non-localhost) DB.
-const isRemote = connectionString && !/localhost|127\.0\.0\.1/.test(connectionString);
+// DO's managed PG is signed by DO's own CA (not in the system bundle), and its
+// DATABASE_URL carries `sslmode=require` — which newer pg treats as verify-full
+// and rejects. Strip sslmode so our `ssl` config governs TLS, and verify against
+// DO's CA when it's provided (CA_CERT binding); otherwise accept the DO-signed
+// cert (the link is still TLS-encrypted, just not chain-verified).
+function stripSslmode(url) {
+  try {
+    const u = new URL(url);
+    u.searchParams.delete('sslmode');
+    return u.toString();
+  } catch {
+    return url;
+  }
+}
 
-export const pool = new Pool({
-  connectionString,
-  ssl: isRemote ? { rejectUnauthorized: false } : false,
-});
+const connectionString = isRemote ? stripSslmode(rawUrl) : rawUrl;
+const ssl = isRemote
+  ? process.env.CA_CERT
+    ? { ca: process.env.CA_CERT }
+    : { rejectUnauthorized: false }
+  : false;
+
+export const pool = new Pool({ connectionString, ssl });
 
 // Apply db/schema.sql and seed a few approved tributes if the table is empty, so
 // a fresh deploy shows a populated guestbook rather than a blank page.
