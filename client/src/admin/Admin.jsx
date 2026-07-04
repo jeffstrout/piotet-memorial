@@ -1,11 +1,15 @@
 import { useEffect, useState, useCallback } from 'react';
 import { getToken, setToken, clearToken, verifyToken } from './adminApi.js';
 import ContentEditor from './ContentEditor.jsx';
+import PhotosAdmin from './PhotosAdmin.jsx';
+import SongsAdmin from './SongsAdmin.jsx';
 import TributesAdmin from './TributesAdmin.jsx';
 import './admin.css';
 
 const TABS = [
   { key: 'content', label: 'Site text' },
+  { key: 'photos', label: 'Photos' },
+  { key: 'songs', label: 'Songs' },
   { key: 'tributes', label: 'Tributes' },
 ];
 
@@ -93,6 +97,8 @@ export default function Admin() {
 
       <main className="admin-main">
         {tab === 'content' && <ContentEditor onAuthError={onAuthError} />}
+        {tab === 'photos' && <PhotosAdmin onAuthError={onAuthError} />}
+        {tab === 'songs' && <SongsAdmin onAuthError={onAuthError} />}
         {tab === 'tributes' && <TributesAdmin onAuthError={onAuthError} />}
       </main>
     </div>

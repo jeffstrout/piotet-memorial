@@ -48,6 +48,20 @@ services:
       - key: MEDIA_CDN_BASE
         scope: RUN_TIME
         value: https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com
+      # Spaces uploads (Milestone 3). Non-secret settings live here; the key/
+      # secret are added as encrypted App-level env vars after the Space exists
+      # (Dashboard → App → api → Environment Variables): SPACES_KEY, SPACES_SECRET.
+      # Until both are set, uploads are disabled and /admin falls back to pasting
+      # storage keys — nothing breaks.
+      - key: SPACES_BUCKET
+        scope: RUN_TIME
+        value: piotet-memorial
+      - key: SPACES_REGION
+        scope: RUN_TIME
+        value: nyc3
+      - key: SPACES_ENDPOINT
+        scope: RUN_TIME
+        value: https://nyc3.digitaloceanspaces.com
     routes:
       - path: /api
         preserve_path_prefix: true

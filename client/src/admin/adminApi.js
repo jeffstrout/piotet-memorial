@@ -38,3 +38,41 @@ export const getTributes = (status) =>
   req('GET', `/admin/tributes${status ? `?status=${encodeURIComponent(status)}` : ''}`);
 export const moderateTribute = (id, action) =>
   req('POST', `/admin/tributes/${id}`, { action });
+
+// ── Gallery (photos) ─────────────────────────────────────────────────────────
+export const getPhotos = () => req('GET', '/admin/photos');
+export const createPhoto = (d) => req('POST', '/admin/photos', d);
+export const updatePhoto = (id, d) => req('PUT', `/admin/photos/${id}`, d);
+export const deletePhoto = (id) => req('DELETE', `/admin/photos/${id}`);
+export const reorderPhotos = (ids) => req('POST', '/admin/photos/reorder', { ids });
+
+// ── Songbook (songs) ─────────────────────────────────────────────────────────
+export const getSongs = () => req('GET', '/admin/songs');
+export const createSong = (d) => req('POST', '/admin/songs', d);
+export const updateSong = (id, d) => req('PUT', `/admin/songs/${id}`, d);
+export const deleteSong = (id) => req('DELETE', `/admin/songs/${id}`);
+export const reorderSongs = (ids) => req('POST', '/admin/songs/reorder', { ids });
+export const saveSongbook = (data) => req('PUT', '/admin/songbook', { data });
+
+// ── Media uploads (DO Spaces, presigned) ─────────────────────────────────────
+export const getUploadConfig = () => req('GET', '/admin/uploads/config');
+
+// Ask the API for a presigned URL, then PUT the file straight to Spaces.
+// Returns the stored key + its public CDN URL.
+export async function uploadFile(file, folder) {
+  const { url, key, publicUrl } = await req('POST', '/admin/uploads/sign', {
+    filename: file.name,
+    contentType: file.type || 'application/octet-stream',
+    folder,
+  });
+  // The presigned URL signs only `host`, so we send just the file plus a plain
+  // Content-Type (unsigned — Spaces still stores it). No x-amz-acl header:
+  // public read is granted by the Space's bucket policy, not per object.
+  const put = await fetch(url, {
+    method: 'PUT',
+    headers: { 'Content-Type': file.type || 'application/octet-stream' },
+    body: file,
+  });
+  if (!put.ok) throw new Error(`Upload failed (${put.status})`);
+  return { key, publicUrl };
+}

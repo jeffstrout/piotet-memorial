@@ -8,10 +8,11 @@
 import express from 'express';
 import cors from 'cors';
 import { initDb } from './db.js';
-import { loadContent } from './content.js';
 import { requireAdmin } from './middleware/admin-auth.js';
 import { tributesRouter, adminRouter } from './routes/tributes.js';
 import { siteRouter, adminContentRouter } from './routes/content.js';
+import { publicPhotos, publicSongs, adminMediaRouter } from './routes/media.js';
+import { uploadsRouter } from './routes/uploads.js';
 
 const PORT = process.env.PORT || 3001;
 const APP_COMMIT = process.env.GIT_SHA || 'dev';
@@ -35,9 +36,6 @@ app.use(
   }),
 );
 
-// Content is static — load once at boot.
-let content = { site: {}, songs: { items: [] }, photos: [] };
-
 // ── Health / version (parity with split-flap) ────────────────────────────────
 app.get('/api/health', (_req, res) => res.json({ status: 'ok' }));
 app.get('/api/version', (_req, res) =>
@@ -45,9 +43,9 @@ app.get('/api/version', (_req, res) =>
 );
 
 // ── Content ──────────────────────────────────────────────────────────────────
-app.use('/api/site', siteRouter);                                  // DB-backed, editable
-app.get('/api/songs', (_req, res) => res.json(content.songs));     // static (Milestone 2)
-app.get('/api/photos', (_req, res) => res.json({ photos: content.photos }));
+app.use('/api/site', siteRouter);      // DB-backed, editable copy
+app.get('/api/photos', publicPhotos);  // DB-backed gallery, static fallback
+app.get('/api/songs', publicSongs);    // DB-backed songbook, static fallback
 
 // ── Tributes (Postgres-backed, moderated) ────────────────────────────────────
 app.use('/api/tributes', tributesRouter);
@@ -57,6 +55,8 @@ const admin = express.Router();
 admin.use(requireAdmin);
 admin.use(adminRouter);          // tribute moderation
 admin.use(adminContentRouter);   // editable site content
+admin.use(adminMediaRouter);     // gallery + songbook CRUD
+admin.use(uploadsRouter);        // presigned Spaces uploads
 app.use('/api/admin', admin);
 
 // ── Errors ───────────────────────────────────────────────────────────────────
@@ -67,15 +67,9 @@ app.use((err, _req, res, _next) => {
 
 async function start() {
   try {
-    content = await loadContent();
-    console.log(`[api] content loaded — ${content.songs.items.length} songs, ${content.photos.length} photos`);
-  } catch (err) {
-    console.error('[api] failed to load content:', err);
-  }
-  try {
     await initDb();
   } catch (err) {
-    console.error('[api] db init failed (tributes disabled):', err);
+    console.error('[api] db init failed (DB features disabled):', err);
   }
   app.listen(PORT, () => console.log(`[api] listening on :${PORT}`));
 }
