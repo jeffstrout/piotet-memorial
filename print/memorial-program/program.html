@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink-navy:#1a2f4d; --body-slate:#33425c; --muted:#5c6b82;
+    --gold:#b99e56; --gold-accent:#a97e33; --rule-gold:#c2a25a; --gold-light-2:#cbb26a;
+    --parchment-card:#f6f0e2;
+    --caps:'Cinzel',serif; --serif:'Cormorant Garamond',serif; --body:'EB Garamond',serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  @page{ size:11in 8.5in; margin:0; }
+  html,body{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  body{ font-family:var(--body); color:var(--body-slate); }
+
+  /* One landscape sheet = two 5.5in panels, folded down the middle. */
+  .sheet{ width:11in; height:8.5in; display:flex; page-break-after:always; background:#fff; }
+  .sheet:last-child{ page-break-after:auto; }
+  .panel{
+    width:5.5in; height:8.5in; position:relative;
+    padding:0.7in 0.6in; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; text-align:center;
+  }
+  /* gold keyline frame — echoes the site's framed sheet */
+  .panel::before{
+    content:""; position:absolute; inset:0.34in; border:1.5px solid var(--gold); pointer-events:none;
+  }
+  .inner{ position:relative; width:100%; max-width:3.9in; }
+
+  /* type roles */
+  .script{ font-family:var(--serif); font-style:italic; font-weight:600; color:var(--gold-accent); line-height:1.1; }
+  .eyebrow{ font-family:var(--caps); font-weight:600; font-size:10px; letter-spacing:.28em;
+    text-transform:uppercase; color:var(--gold-accent); }
+  .name{ font-family:var(--serif); font-weight:600; color:var(--ink-navy); line-height:1; }
+  .caps{ font-family:var(--caps); font-weight:500; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-navy); }
+  .prose{ font-family:var(--body); color:var(--body-slate); line-height:1.75; }
+
+  /* star divider */
+  .star{ width:14px; height:14px; fill:var(--gold-accent); display:block; margin:0 auto; }
+  .rule{ display:flex; align-items:center; justify-content:center; gap:12px; margin:18px auto; width:80%; }
+  .rule .l{ flex:1; height:1px; background:linear-gradient(90deg,transparent,var(--rule-gold),transparent); }
+
+  /* dates rule */
+  .dates{ display:flex; align-items:center; justify-content:center; gap:12px; margin:14px auto; }
+  .dates .l{ width:46px; height:1px; background:var(--rule-gold); }
+  .dates span{ font-family:var(--caps); font-weight:600; font-size:14px; letter-spacing:.14em; color:var(--gold-accent); white-space:nowrap; }
+
+  /* portrait */
+  .portrait{
+    width:2.55in; height:2.55in; border-radius:50%; margin:0 auto;
+    border:2px solid var(--gold); box-shadow:inset 0 0 0 7px var(--parchment-card);
+    background:#ece3cd; display:flex; align-items:center; justify-content:center; overflow:hidden;
+  }
+  .portrait img{ width:100%; height:100%; object-fit:cover; }
+  .portrait .ph{ font-family:var(--caps); font-size:10px; letter-spacing:.2em; color:#b3a37d; text-transform:uppercase; }
+
+  /* section headings + lists */
+  .heading{ font-family:var(--serif); font-style:italic; font-weight:600; font-size:30px; color:var(--gold-accent); margin-bottom:14px; }
+  .detail{ font-family:var(--caps); font-weight:500; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-navy); line-height:2; }
+  .oos{ font-family:var(--caps); font-weight:500; font-size:11.5px; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-navy); line-height:1; margin:15px 0; }
+  .oos small{ display:block; font-size:11.5px; color:var(--muted); margin-top:3px; letter-spacing:.07em; }
+  .closing{ font-family:var(--serif); font-style:italic; font-size:19px; line-height:1.4; color:var(--ink-navy); }
+</style>
+</head>
+<body>
+
+<!-- ============ SHEET 1 — OUTSIDE : [ back cover | front cover ] ============ -->
+<div class="sheet">
+
+  <!-- BACK COVER -->
+  <div class="panel">
+    <div class="inner">
+      <svg class="star" viewBox="0 0 24 24"><path d="M12 2.5 14.9 8.6 21.5 9.5 16.7 14.2 17.9 20.8 12 17.7 6.1 20.8 7.3 14.2 2.5 9.5 9.1 8.6z"/></svg>
+      <p class="eyebrow" style="margin-top:18px">In loving memory of</p>
+      <h2 class="name" style="font-size:34px;margin-top:10px">Vincent Piotet</h2>
+      <div class="dates"><span class="l"></span><span>1935 · 2026</span><span class="l"></span></div>
+      <p class="prose" style="font-style:italic;margin-top:16px;color:var(--muted)">With love and gratitude<br>from the family.</p>
+    </div>
+  </div>
+
+  <!-- FRONT COVER -->
+  <div class="panel">
+    <div class="inner">
+      <p class="script" style="font-size:30px;margin-bottom:22px">Celebrating the life of</p>
+      <div class="portrait"><img src="portrait.png" alt="Vincent Piotet" style="object-position:center 32%"></div>
+      <h1 class="name" style="font-size:50px;margin-top:24px">Vincent Piotet</h1>
+      <div class="dates"><span class="l"></span><span>1935 · 2026</span><span class="l"></span></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ============ SHEET 2 — INSIDE : [ service | order of service ] ============ -->
+<div class="sheet">
+
+  <!-- INSIDE LEFT -->
+  <div class="panel">
+    <div class="inner">
+      <h2 class="heading">Service</h2>
+      <p class="detail">
+        July 25th at 4:00 PM<br>
+        Bethel Bible Downtown<br>
+        202 S Broadway Ave<br>
+        Tyler, TX 75702
+      </p>
+
+      <div class="rule"><span class="l"></span><svg class="star" viewBox="0 0 24 24" style="width:9px;height:9px"><path d="M12 2.5 14.9 8.6 21.5 9.5 16.7 14.2 17.9 20.8 12 17.7 6.1 20.8 7.3 14.2 2.5 9.5 9.1 8.6z"/></svg><span class="l"></span></div>
+
+      <h2 class="heading">Officiating</h2>
+      <p class="detail">Rev. Lucas Ignacio Kabel</p>
+
+      <div class="rule"><span class="l"></span><svg class="star" viewBox="0 0 24 24" style="width:9px;height:9px"><path d="M12 2.5 14.9 8.6 21.5 9.5 16.7 14.2 17.9 20.8 12 17.7 6.1 20.8 7.3 14.2 2.5 9.5 9.1 8.6z"/></svg><span class="l"></span></div>
+
+      <h2 class="heading">Share in the Ministry</h2>
+      <p class="prose" style="font-size:15px">
+        Vince was deeply invested in the work of Hospice of East Texas. In lieu
+        of flowers, we encourage you to donate and volunteer in support of their
+        ministry.
+      </p>
+    </div>
+  </div>
+
+  <!-- INSIDE RIGHT -->
+  <div class="panel">
+    <div class="inner">
+      <h2 class="heading">Order of Service</h2>
+      <div class="oos">Welcome &amp; Prayer<small>Ftr Erlandson</small></div>
+      <div class="oos">Eulogy<small>James Vandyke</small></div>
+      <div class="oos">Hymns<small>Josh Drew &amp; Rebecca Scott</small></div>
+      <div class="oos">The Garden</div>
+      <div class="oos">One More Hymn</div>
+      <div class="oos">Christ Our Hope in Life &amp; Death</div>
+      <div class="oos">Remembrance<small>Kim Reel</small></div>
+      <div class="oos">Message<small>Hof Pastor</small></div>
+
+      <div class="rule"><span class="l"></span><svg class="star" viewBox="0 0 24 24" style="width:9px;height:9px"><path d="M12 2.5 14.9 8.6 21.5 9.5 16.7 14.2 17.9 20.8 12 17.7 6.1 20.8 7.3 14.2 2.5 9.5 9.1 8.6z"/></svg><span class="l"></span></div>
+
+      <p class="closing">Please join us for a reception on the 2nd floor immediately following the service.</p>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
