@@ -49,10 +49,10 @@ export default function App() {
               <Home site={site} songs={songs} photos={photos} tributes={tributes} go={go} />
             )}
             {view === 'story' && <Story site={site} go={go} />}
-            {view === 'pictures' && <Pictures photos={photos} go={go} />}
-            {view === 'songs' && <Songs songs={songs} go={go} />}
+            {view === 'pictures' && <Pictures site={site} photos={photos} go={go} />}
+            {view === 'songs' && <Songs site={site} songs={songs} go={go} />}
             {view === 'tributes' && (
-              <Tributes tributes={tributes} go={go} onSubmitted={loadTributes} />
+              <Tributes site={site} tributes={tributes} go={go} onSubmitted={loadTributes} />
             )}
 
             <Footer />

@@ -7,6 +7,7 @@ import { readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import pg from 'pg';
+import { seedContentBlocks } from './site-content.js';
 
 const { Pool } = pg;
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -59,5 +60,9 @@ export async function initDb() {
     }
     console.log(`[db] seeded ${tributes.length} approved tributes`);
   }
+
+  const seeded = await seedContentBlocks();
+  if (seeded) console.log(`[db] seeded ${seeded} content blocks`);
+
   console.log('[db] ready');
 }

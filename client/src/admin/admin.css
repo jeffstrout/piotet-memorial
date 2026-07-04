@@ -1,0 +1,192 @@
+/* Admin editor — reuses the memorial's tokens (theme.css) but a plainer,
+   utilitarian layout tuned for editing rather than display. */
+
+.admin-shell {
+  min-height: 100vh;
+  background: var(--parchment-page);
+  color: var(--body-slate);
+  font-family: var(--font-body);
+}
+
+/* ── Login ────────────────────────────────────────────────────────────────── */
+.admin-shell--login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at top, #16294a 0%, var(--desk-navy) 60%);
+}
+.admin-login {
+  background: var(--parchment-card);
+  border: 1.5px solid var(--gold);
+  padding: 2.5rem;
+  width: min(90vw, 22rem);
+  display: grid;
+  gap: 0.9rem;
+  text-align: center;
+  box-shadow: var(--shadow-sheet);
+}
+.admin-login h1 {
+  font-family: var(--font-display-serif);
+  color: var(--ink-navy);
+  margin: 0;
+  font-size: 1.8rem;
+}
+.admin-login p { margin: 0 0 0.5rem; color: var(--muted); }
+.admin-login input {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--gold);
+  background: #fff;
+  border-radius: 0;
+}
+.admin-back { color: var(--gold-accent); text-decoration: none; font-size: 0.9rem; margin-top: 0.3rem; }
+.admin-back:hover { color: var(--link-hover); }
+
+/* ── Header ───────────────────────────────────────────────────────────────── */
+.admin-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  padding: 1rem 1.5rem;
+  background: var(--frame-navy);
+  color: var(--parchment-ink);
+  border-bottom: 2px solid var(--gold);
+}
+.admin-header__brand {
+  font-family: var(--font-display-caps);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color: var(--gold-light);
+}
+.admin-header__right { margin-left: auto; display: flex; align-items: center; gap: 1rem; }
+.admin-viewsite { color: var(--on-dark-sub); text-decoration: none; font-size: 0.85rem; }
+.admin-viewsite:hover { color: var(--gold-light); }
+.admin-logout {
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--parchment-ink);
+  padding: 0.4rem 0.9rem;
+  font-size: 0.8rem;
+}
+.admin-logout:hover { background: rgba(185, 158, 86, 0.18); }
+
+/* ── Tabs ─────────────────────────────────────────────────────────────────── */
+.admin-tabs { display: flex; gap: 0.5rem; }
+.admin-tabs button {
+  background: transparent;
+  border: 0;
+  color: var(--on-dark-sub);
+  font-family: var(--font-display-caps);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.75rem;
+  border-bottom: 2px solid transparent;
+}
+.admin-tabs button.is-active { color: var(--gold-light); border-bottom-color: var(--gold); }
+.admin-tabs--sub { margin-bottom: 1.5rem; }
+.admin-tabs--sub button {
+  color: var(--muted);
+  border: 1px solid var(--hairline);
+  border-radius: 0;
+}
+.admin-tabs--sub button.is-active { color: #fff; background: var(--frame-navy); border-color: var(--gold); }
+
+/* ── Main / blocks ────────────────────────────────────────────────────────── */
+.admin-main { max-width: 60rem; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+.admin-blocks { display: grid; gap: 2rem; }
+.admin-block {
+  background: #fff;
+  border: 1px solid var(--card-border);
+  padding: 1.5rem;
+}
+.admin-block__head h2 {
+  font-family: var(--font-display-serif);
+  color: var(--ink-navy);
+  margin: 0 0 0.2rem;
+  font-size: 1.5rem;
+}
+.admin-block__head p { margin: 0 0 1.2rem; color: var(--muted); font-size: 0.9rem; }
+.admin-block__actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--hairline);
+}
+.admin-savemsg { color: var(--gold-accent); font-style: italic; font-size: 0.9rem; }
+
+/* ── Fields ───────────────────────────────────────────────────────────────── */
+.admin-field { display: grid; gap: 0.3rem; margin-bottom: 1rem; }
+.admin-field > span { font-size: 0.8rem; font-weight: 600; color: var(--body-slate); letter-spacing: 0.02em; }
+.admin-field input,
+.admin-field textarea {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--hairline);
+  border-radius: 0;
+  background: #fdfbf6;
+  width: 100%;
+  color: var(--ink-navy);
+}
+.admin-field input:focus,
+.admin-field textarea:focus { outline: 2px solid var(--gold); border-color: var(--gold); }
+.admin-field textarea { resize: vertical; line-height: 1.6; }
+
+.admin-group {
+  border: 1px solid var(--hairline);
+  padding: 1rem 1rem 0.2rem;
+  margin: 0 0 1rem;
+}
+.admin-group legend {
+  font-family: var(--font-display-caps);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-accent);
+  padding: 0 0.4rem;
+}
+
+/* Markdown editor: textarea + live preview side by side */
+.admin-field--md .admin-md {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+@media (max-width: 720px) { .admin-field--md .admin-md { grid-template-columns: 1fr; } }
+.admin-md textarea { min-height: 18rem; font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 0.9rem; }
+.admin-md__preview {
+  border: 1px dashed var(--hairline);
+  padding: 1rem;
+  background: var(--parchment-card);
+  overflow: auto;
+  max-height: 24rem;
+}
+.admin-md__preview.story-body p { font-size: 0.95rem; }
+
+/* ── States ───────────────────────────────────────────────────────────────── */
+.admin-loading, .admin-empty { color: var(--muted); font-style: italic; padding: 1rem 0; }
+.admin-error { color: var(--danger, #be1f1f); font-size: 0.9rem; }
+
+/* ── Tribute moderation ───────────────────────────────────────────────────── */
+.admin-tribute-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
+.admin-tribute {
+  background: #fff;
+  border: 1px solid var(--card-border);
+  padding: 1.25rem 1.5rem;
+}
+.admin-tribute blockquote {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-display-serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: #26364e;
+}
+.admin-tribute cite { color: var(--gold-accent); font-family: var(--font-display-caps); font-size: 0.75rem; letter-spacing: 0.08em; }
+.admin-tribute__actions { display: flex; gap: 0.75rem; margin-top: 1rem; }

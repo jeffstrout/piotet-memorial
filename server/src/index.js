@@ -9,7 +9,9 @@ import express from 'express';
 import cors from 'cors';
 import { initDb } from './db.js';
 import { loadContent } from './content.js';
+import { requireAdmin } from './middleware/admin-auth.js';
 import { tributesRouter, adminRouter } from './routes/tributes.js';
+import { siteRouter, adminContentRouter } from './routes/content.js';
 
 const PORT = process.env.PORT || 3001;
 const APP_COMMIT = process.env.GIT_SHA || 'dev';
@@ -43,13 +45,19 @@ app.get('/api/version', (_req, res) =>
 );
 
 // ── Content ──────────────────────────────────────────────────────────────────
-app.get('/api/site', (_req, res) => res.json(content.site));
-app.get('/api/songs', (_req, res) => res.json(content.songs));
+app.use('/api/site', siteRouter);                                  // DB-backed, editable
+app.get('/api/songs', (_req, res) => res.json(content.songs));     // static (Milestone 2)
 app.get('/api/photos', (_req, res) => res.json({ photos: content.photos }));
 
 // ── Tributes (Postgres-backed, moderated) ────────────────────────────────────
 app.use('/api/tributes', tributesRouter);
-app.use('/api/admin', adminRouter);
+
+// ── Admin surface — everything here is behind the Bearer-token guard ─────────
+const admin = express.Router();
+admin.use(requireAdmin);
+admin.use(adminRouter);          // tribute moderation
+admin.use(adminContentRouter);   // editable site content
+app.use('/api/admin', admin);
 
 // ── Errors ───────────────────────────────────────────────────────────────────
 app.use((err, _req, res, _next) => {

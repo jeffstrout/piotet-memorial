@@ -71,10 +71,27 @@ placeholder content (see `client/src/fallback.js`).
 | GET  | `/api/site` | Person, service, story copy. |
 | GET  | `/api/songs` | Songbook manifest (CDN URLs). |
 | GET  | `/api/photos` | Gallery manifest (CDN URLs). |
+| GET  | `/api/site` | Assembled site copy (DB-backed, seed fallback). |
 | GET  | `/api/tributes` | Approved tributes, newest first. |
 | POST | `/api/tributes` | Submit a memory → stored `pending`. |
+| GET  | `/api/admin/content` | All editable content blocks (admin). |
+| PUT  | `/api/admin/content/:key` | Replace a block's `data` (admin). |
 | GET  | `/api/admin/tributes` | All tributes (needs `Authorization: Bearer $ADMIN_TOKEN`). |
 | POST | `/api/admin/tributes/:id` | `{ "action": "approve" \| "reject" }` (admin). |
+
+## Editing the site (`/admin`)
+
+The family edits site text and moderates tributes at **`/admin`** — no code change,
+no redeploy. One password (the `ADMIN_TOKEN`); the editor has:
+
+- **Site text** — name/tagline, service details, the obituary (Markdown with live
+  preview), and page headings. Stored in the `content_blocks` table; edits are
+  instant. Missing/unset blocks fall back to `server/content/site.json`.
+- **Tributes** — pending / approved / rejected queues with approve & reject.
+
+Set `ADMIN_TOKEN` as an encrypted env var on the DO app (App → `api` → Settings →
+Environment Variables) to enable login. Until then, `/api/admin/*` returns 401 and
+the public site still works normally.
 
 ## Deploy (DigitalOcean)
 

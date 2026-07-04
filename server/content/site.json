@@ -16,13 +16,21 @@
     "eyebrow": "His story",
     "title": "A quiet life, richly played",
     "lead": "For twenty-one years, Vincent carried his guitar into the quietest rooms of the hospice and played until the silence softened. This is the story of a man who believed music belonged at every bedside.",
-    "paragraphs": [
-      "Placeholder paragraph one. The full obituary will be written with the family. It should open with who Vincent was — where he was born, the shape of his early life, and the moment music first found him.",
-      "Placeholder paragraph two. His years of work, the people he loved, and how the guitar became a companion through all of it.",
-      "Placeholder paragraph three. The hospice years — twenty-one of them — and what it meant to play for people in their final days. The recordings he made along the way, some two hundred and fifty songs.",
-      "Placeholder paragraph four. The smaller things: his favorite songs, his habits, the Tuesdays he never missed, the way a room changed when he began to play.",
-      "Placeholder paragraph five. A closing that gathers the life together and hands it to those who remember him."
-    ],
+    "body": "Placeholder paragraph one. The full obituary will be written with the family. It should open with who Vincent was — where he was born, the shape of his early life, and the moment music first found him.\n\nPlaceholder paragraph two. His years of work, the people he loved, and how the guitar became a companion through all of it.\n\nPlaceholder paragraph three. The hospice years — twenty-one of them — and what it meant to play for people in their final days. The recordings he made along the way, some two hundred and fifty songs.\n\nPlaceholder paragraph four. The smaller things: his favorite songs, his habits, the Tuesdays he never missed, the way a room changed when he began to play.\n\nPlaceholder paragraph five. A closing that gathers the life together and hands it to those who remember him.",
     "pullQuote": "He believed no one should be alone with silence."
+  },
+  "intros": {
+    "pictures": {
+      "title": "A life in pictures",
+      "subtitle": "Photographs and video from across Vincent’s life, gathered by his family."
+    },
+    "songs": {
+      "title": "Two hundred and fifty songs",
+      "subtitle": "A selection of the songs Vincent recorded. Play any of them, or download the whole collection to keep."
+    },
+    "tributes": {
+      "title": "What people remember",
+      "subtitle": "Memories shared by the family, friends, and the many people whose final days he brightened."
+    }
   }
 }

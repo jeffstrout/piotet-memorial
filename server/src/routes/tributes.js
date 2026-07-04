@@ -54,15 +54,7 @@ tributesRouter.post('/', async (req, res, next) => {
   }
 });
 
-// ── Admin (moderation) ───────────────────────────────────────────────────────
-adminRouter.use((req, res, next) => {
-  const token = (req.get('authorization') || '').replace(/^Bearer\s+/i, '');
-  if (!process.env.ADMIN_TOKEN || token !== process.env.ADMIN_TOKEN) {
-    return res.status(401).json({ error: 'Unauthorized' });
-  }
-  next();
-});
-
+// ── Admin (moderation) — mounted behind requireAdmin in index.js ─────────────
 adminRouter.get('/tributes', async (req, res, next) => {
   try {
     const status = req.query.status; // optional filter: pending|approved|rejected

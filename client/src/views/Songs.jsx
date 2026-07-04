@@ -1,16 +1,17 @@
 import { Eyebrow, BackLink, SongRow } from '../components.jsx';
 import { DownloadIcon } from '../icons.jsx';
 
-export default function Songs({ songs, go }) {
+export default function Songs({ site, songs, go }) {
+  const intro = site?.intros?.songs || {};
   return (
     <div className="view-enter">
       <BackLink go={go} />
       <div className="center">
         <Eyebrow>His songbook</Eyebrow>
-        <h1 className="page-title">Two hundred and fifty songs</h1>
+        <h1 className="page-title">{intro.title || 'Two hundred and fifty songs'}</h1>
         <p className="subtitle">
-          A selection of the songs Vincent recorded. Play any of them, or download
-          the whole collection to keep.
+          {intro.subtitle ||
+            'A selection of the songs Vincent recorded. Play any of them, or download the whole collection to keep.'}
         </p>
         <div className="section__actions">
           <button className="btn"><DownloadIcon /> Download all {songs.total} songs</button>

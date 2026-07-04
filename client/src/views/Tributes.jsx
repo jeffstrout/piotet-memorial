@@ -3,7 +3,8 @@ import { Eyebrow, BackLink, TributeCard } from '../components.jsx';
 import { HeartIcon } from '../icons.jsx';
 import { postTribute } from '../api.js';
 
-export default function Tributes({ tributes, go, onSubmitted }) {
+export default function Tributes({ site, tributes, go, onSubmitted }) {
+  const intro = site?.intros?.tributes || {};
   const [author, setAuthor] = useState('');
   const [quote, setQuote] = useState('');
   const [status, setStatus] = useState('');
@@ -32,10 +33,10 @@ export default function Tributes({ tributes, go, onSubmitted }) {
       <BackLink go={go} />
       <div className="center">
         <Eyebrow>Tributes</Eyebrow>
-        <h1 className="page-title">What people remember</h1>
+        <h1 className="page-title">{intro.title || 'What people remember'}</h1>
         <p className="subtitle">
-          Memories shared by the family, friends, and the many people whose final
-          days he brightened.
+          {intro.subtitle ||
+            'Memories shared by the family, friends, and the many people whose final days he brightened.'}
         </p>
       </div>
 

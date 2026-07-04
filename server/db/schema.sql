@@ -3,8 +3,17 @@
 -- Applied automatically on API startup (see server/src/db.js), and safe to run
 -- by hand:  psql "$DATABASE_URL" -f db/schema.sql
 --
--- Only the tributes guestbook needs persistence. Songs/photos are static
--- manifests + media in DO Spaces; story/service are static content.
+-- Persistence: the tributes guestbook, and editable site content (so the family
+-- can edit copy via /admin without a code change or redeploy). Media binaries
+-- stay in DO Spaces; only their keys/metadata live here.
+
+-- Editable text content, one row per block (hero/person, service, story, intros).
+-- `data` is a JSONB blob whose shape depends on the key; the admin UI edits it.
+CREATE TABLE IF NOT EXISTS content_blocks (
+  key         TEXT PRIMARY KEY,
+  data        JSONB NOT NULL,
+  updated_at  TIMESTAMPTZ NOT NULL DEFAULT now()
+);
 
 CREATE TABLE IF NOT EXISTS tributes (
   id          BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
