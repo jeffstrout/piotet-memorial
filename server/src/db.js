@@ -16,9 +16,10 @@ const isRemote = rawUrl && !/localhost|127\.0\.0\.1/.test(rawUrl);
 
 // DO's managed PG is signed by DO's own CA (not in the system bundle), and its
 // DATABASE_URL carries `sslmode=require` — which newer pg treats as verify-full
-// and rejects. Strip sslmode so our `ssl` config governs TLS, and verify against
-// DO's CA when it's provided (CA_CERT binding); otherwise accept the DO-signed
-// cert (the link is still TLS-encrypted, just not chain-verified).
+// and rejects. Strip sslmode so our `ssl` config governs TLS, then accept the
+// DO-signed cert: the connection stays TLS-encrypted, it's just not chain-
+// verified (DO injects the CA in a form Node won't validate reliably, and the
+// DB is only reachable over DO's private network).
 function stripSslmode(url) {
   try {
     const u = new URL(url);
@@ -30,11 +31,7 @@ function stripSslmode(url) {
 }
 
 const connectionString = isRemote ? stripSslmode(rawUrl) : rawUrl;
-const ssl = isRemote
-  ? process.env.CA_CERT
-    ? { ca: process.env.CA_CERT }
-    : { rejectUnauthorized: false }
-  : false;
+const ssl = isRemote ? { rejectUnauthorized: false } : false;
 
 export const pool = new Pool({ connectionString, ssl });
 

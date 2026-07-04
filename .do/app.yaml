@@ -38,9 +38,6 @@ services:
       - key: DATABASE_URL
         scope: RUN_TIME
         value: ${tributes-db.DATABASE_URL}   # injected by the managed DB below
-      - key: CA_CERT
-        scope: RUN_TIME
-        value: ${tributes-db.CA_CERT}        # DO's DB CA — used to verify TLS
       # ADMIN_TOKEN (tribute moderation) is intentionally NOT in this committed
       # spec — a placeholder here would fail `doctl apps create`, and a real
       # value must never be committed to a public repo. After the first deploy,
