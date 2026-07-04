@@ -377,7 +377,11 @@ body {
   gap: 1rem;
   margin-top: 1.8rem;
 }
-.photo-grid--home { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+/* Home gallery: fixed two rows of three on desktop + tablet; two-up on phones. */
+.photo-grid--home { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 600px) {
+  .photo-grid--home { grid-template-columns: repeat(2, 1fr); }
+}
 .photo-frame {
   padding: 8px;
   border: 1.5px solid var(--gold);
