@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const CONTENT_DIR = join(__dirname, '..', '..', 'content');
+const CONTENT_DIR = join(__dirname, '..', 'content');
 
 const CDN = (process.env.MEDIA_CDN_BASE || '').replace(/\/$/, '');
 

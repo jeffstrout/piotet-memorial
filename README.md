@@ -33,13 +33,13 @@ piotet-memorial/
 │       ├── views/        # Home, Story, Pictures, Songs, Tributes
 │       ├── components.jsx, icons.jsx, theme.css   # design system
 │       └── api.js, fallback.js
-├── server/               # Node + Express API
-│   └── src/
-│       ├── index.js      # /api/health, /api/version, /api/{site,songs,photos}
-│       ├── routes/tributes.js   # public submit/read + admin moderation
-│       ├── db.js, content.js
-├── content/              # static manifests (site copy, songs, photos, tribute seed)
-└── db/schema.sql         # tributes table
+└── server/               # Node + Express API (self-contained — DO deploys this subtree)
+    ├── src/
+    │   ├── index.js      # /api/health, /api/version, /api/{site,songs,photos}
+    │   ├── routes/tributes.js   # public submit/read + admin moderation
+    │   ├── db.js, content.js
+    ├── content/          # static manifests (site copy, songs, photos, tribute seed)
+    └── db/schema.sql     # tributes table
 ```
 
 ## Local development
@@ -87,10 +87,10 @@ Then pushing to `main` auto-deploys.
 
 ## Content still to supply (from the family)
 
-- Obituary / life-story copy (`content/site.json` → `story`).
+- Obituary / life-story copy (`server/content/site.json` → `story`).
 - Service date, time, and location (currently "To be announced").
-- ~250 audio files + the "download all" zip → **DO Spaces**, keys per `content/songs.json`.
-- Portrait photos and video → **DO Spaces**, keys per `content/photos.json` (all portrait 3:4).
+- ~250 audio files + the "download all" zip → **DO Spaces**, keys per `server/content/songs.json`.
+- Portrait photos and video → **DO Spaces**, keys per `server/content/photos.json` (all portrait 3:4).
 - Hero portrait image.
 
 ## Credit

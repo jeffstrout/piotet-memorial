@@ -38,10 +38,13 @@ services:
       - key: DATABASE_URL
         scope: RUN_TIME
         value: ${tributes-db.DATABASE_URL}   # injected by the managed DB below
-      - key: ADMIN_TOKEN
-        scope: RUN_TIME
-        type: SECRET
-        value: EV[1:REPLACE_WITH_ENCRYPTED_SECRET]   # set via: doctl apps ... or dashboard
+      # ADMIN_TOKEN (tribute moderation) is intentionally NOT in this committed
+      # spec — a placeholder here would fail `doctl apps create`, and a real
+      # value must never be committed to a public repo. After the first deploy,
+      # add it as an encrypted App-level env var:
+      #   Dashboard → App → Settings → api component → Environment Variables
+      #   (key: ADMIN_TOKEN, type: Encrypted, value: a long random string)
+      # Until it's set, /api/admin/* safely returns 401 (moderation locked).
       - key: MEDIA_CDN_BASE
         scope: RUN_TIME
         value: https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com

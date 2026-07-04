@@ -29,13 +29,13 @@ export async function initDb() {
     console.warn('[db] DATABASE_URL not set — tributes API will be unavailable.');
     return;
   }
-  const schemaPath = join(__dirname, '..', '..', 'db', 'schema.sql');
+  const schemaPath = join(__dirname, '..', 'db', 'schema.sql');
   const schema = await readFile(schemaPath, 'utf8');
   await pool.query(schema);
 
   const { rows } = await pool.query('SELECT COUNT(*)::int AS n FROM tributes');
   if (rows[0].n === 0) {
-    const seedPath = join(__dirname, '..', '..', 'content', 'tributes.seed.json');
+    const seedPath = join(__dirname, '..', 'content', 'tributes.seed.json');
     const { tributes } = JSON.parse(await readFile(seedPath, 'utf8'));
     for (const t of tributes) {
       await pool.query(
