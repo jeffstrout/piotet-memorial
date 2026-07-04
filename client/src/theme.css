@@ -299,6 +299,7 @@ body {
   border: 2px solid #b99e56;
   box-shadow: inset 0 0 0 6px var(--parchment-card), var(--shadow-card);
   object-fit: cover;
+  object-position: center 30%;
   background: #e7dcc4;
 }
 .hero__name {

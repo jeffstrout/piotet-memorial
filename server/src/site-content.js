@@ -27,11 +27,13 @@ function withDefaults(seedVal, storedVal) {
   return storedVal ?? seedVal;
 }
 
-// Resolve the hero portrait key (or a pasted full URL) to a displayable URL.
+// Resolve the hero portrait to a displayable URL. Accepts a full URL, a
+// same-origin path (e.g. /portrait.jpg served as a static asset), or a Spaces
+// key (prefixed with the CDN base).
 function resolvePortrait(person) {
   if (!person) return person;
   const pk = person.portraitKey;
-  const portrait = pk ? (/^https?:\/\//.test(pk) ? pk : mediaUrl(pk)) : null;
+  const portrait = pk ? (/^(https?:\/\/|\/)/.test(pk) ? pk : mediaUrl(pk)) : null;
   return { ...person, portrait };
 }
 
