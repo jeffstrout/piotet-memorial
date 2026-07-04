@@ -85,7 +85,7 @@ export default function Home({ site, songs, photos, tributes, go }) {
       <section className="section">
         <Eyebrow>Tributes</Eyebrow>
         <h2 className="section-title">What people remember</h2>
-        <div className="tribute-grid">
+        <div className="tribute-grid tribute-grid--home">
           {tributes.slice(0, 2).map((t) => <TributeCard key={t.id} tribute={t} />)}
         </div>
         <div className="section__actions">
