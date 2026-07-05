@@ -14,7 +14,15 @@ export default function Songs({ site, songs, go }) {
             'A selection of the songs Vincent recorded. Play any of them, or download the whole collection to keep.'}
         </p>
         <div className="section__actions">
-          <button className="btn"><DownloadIcon /> Download all {songs.total} songs</button>
+          {songs.downloadAllUrl ? (
+            <a className="btn" href={songs.downloadAllUrl} download>
+              <DownloadIcon /> Download all {songs.total} songs
+            </a>
+          ) : (
+            <button className="btn" disabled>
+              <DownloadIcon /> Download all {songs.total} songs
+            </button>
+          )}
         </div>
       </div>
 

@@ -75,7 +75,13 @@ export default function Home({ site, songs, photos, tributes, go }) {
             ))}
           </div>
           <div className="section__actions">
-            <button className="btn"><DownloadIcon /> Download all {songs.total}</button>
+            {songs.downloadAllUrl ? (
+              <a className="btn" href={songs.downloadAllUrl} download>
+                <DownloadIcon /> Download all {songs.total}
+              </a>
+            ) : (
+              <button className="btn" disabled><DownloadIcon /> Download all {songs.total}</button>
+            )}
             <TextLink onClick={() => go('songs')}>View the full songbook</TextLink>
           </div>
         </div>

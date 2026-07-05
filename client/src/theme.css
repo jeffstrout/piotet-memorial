@@ -176,8 +176,10 @@ body {
   border-radius: 0;                    /* square corners everywhere */
   background: var(--frame-navy);
   color: var(--parchment-ink);
+  text-decoration: none;               /* .btn is used on <a> too */
   transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
 }
+.btn:disabled { opacity: 0.5; cursor: default; }
 .btn .icon { color: var(--gold-light); width: 1.1em; height: 1.1em; }
 .btn:hover { background: var(--ink-navy); }
 .btn--ghost {
