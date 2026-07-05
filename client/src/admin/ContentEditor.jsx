@@ -8,7 +8,7 @@ const BLOCK_META = {
   person: { title: 'Name & hero', blurb: 'The name, dates, and tagline on the home page.' },
   service: { title: 'Service details', blurb: 'The celebration-of-life plaque. Use “To be announced” until set.' },
   story: { title: 'His story', blurb: 'The obituary. The story body accepts Markdown (blank line = new paragraph, *italics*, **bold**).' },
-  intros: { title: 'Page headings', blurb: 'Titles and subtitles for the Pictures, Songs, and Tributes pages.' },
+  intros: { title: 'Page headings', blurb: 'Titles and subtitles for the Pictures, Songs, and Tributes pages — the titles also drive the matching sections on the home page.' },
 };
 
 const humanize = (k) =>

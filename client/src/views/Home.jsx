@@ -6,6 +6,7 @@ import { MusicIcon, DownloadIcon, CalendarIcon, PinIcon, HeartIcon } from '../ic
 
 export default function Home({ site, songs, photos, tributes, go }) {
   const { person, service } = site;
+  const intros = site?.intros || {};
   const homePhotos = photos.filter((p) => p.type === 'photo').slice(0, 6);
 
   return (
@@ -56,7 +57,7 @@ export default function Home({ site, songs, photos, tributes, go }) {
       {/* Pictures */}
       <section className="section">
         <Eyebrow>Pictures</Eyebrow>
-        <h2 className="section-title">A life in pictures</h2>
+        <h2 className="section-title">{intros.pictures?.title || 'A life in pictures'}</h2>
         {homePhotos.length > 0 ? (
           <Gallery photos={homePhotos} gridClass="photo-grid photo-grid--home" />
         ) : (
@@ -73,7 +74,7 @@ export default function Home({ site, songs, photos, tributes, go }) {
       <div className="plaque">
         <div className="plaque__inner">
           <Eyebrow onDark>His songbook</Eyebrow>
-          <h2 className="section-title section-title--on-dark">Two hundred and fifty songs</h2>
+          <h2 className="section-title section-title--on-dark">{intros.songs?.title || 'Two hundred and fifty songs'}</h2>
           <div className="songlist">
             {songs.items.slice(0, 4).map((s) => (
               <SongRow key={s.index} song={s} onDark />
@@ -95,7 +96,7 @@ export default function Home({ site, songs, photos, tributes, go }) {
       {/* Tributes */}
       <section className="section">
         <Eyebrow>Tributes</Eyebrow>
-        <h2 className="section-title">What people remember</h2>
+        <h2 className="section-title">{intros.tributes?.title || 'What people remember'}</h2>
         {tributes.length > 0 && (
           <div className="tribute-grid tribute-grid--home">
             {tributes.slice(0, 2).map((t) => <TributeCard key={t.id} tribute={t} />)}
