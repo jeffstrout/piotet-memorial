@@ -9,9 +9,14 @@ import { getSite, getSongs, getPhotos, getTributes } from './api.js';
 import { fallbackSite, fallbackSongs, fallbackPhotos } from './fallback.js';
 
 const VIEWS = new Set(['home', 'story', 'pictures', 'songs', 'tributes']);
+const viewFromPath = () => {
+  const p = window.location.pathname.replace(/^\/+|\/+$/g, '');
+  return VIEWS.has(p) ? p : 'home';
+};
+const pathForView = (v) => (v === 'home' ? '/' : `/${v}`);
 
 export default function App() {
-  const [view, setView] = useState('home');
+  const [view, setView] = useState(viewFromPath);
   const [site, setSite] = useState(fallbackSite);
   const [songs, setSongs] = useState(fallbackSongs);
   const [photos, setPhotos] = useState(fallbackPhotos);
@@ -34,8 +39,17 @@ export default function App() {
   useEffect(() => { loadTributes(); }, [loadTributes]);
 
   const go = useCallback((next) => {
-    setView(VIEWS.has(next) ? next : 'home');
+    const v = VIEWS.has(next) ? next : 'home';
+    if (v !== viewFromPath()) window.history.pushState({ view: v }, '', pathForView(v));
+    setView(v);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
+  // Browser back/forward → sync the view from the URL.
+  useEffect(() => {
+    const onPop = () => setView(viewFromPath());
+    window.addEventListener('popstate', onPop);
+    return () => window.removeEventListener('popstate', onPop);
   }, []);
 
   return (

@@ -26,7 +26,11 @@ export default function Lightbox({ photos, index, onClose, onNav }) {
 
   return createPortal(
     <div className="lightbox" onClick={onClose} role="dialog" aria-modal="true">
-      <button className="lightbox__close" onClick={onClose} aria-label="Close">×</button>
+      <button
+        className="lightbox__close"
+        onClick={(e) => { e.stopPropagation(); onClose(); }}
+        aria-label="Close"
+      >×</button>
       {many && (
         <button
           className="lightbox__nav lightbox__nav--prev"
