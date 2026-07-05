@@ -1,4 +1,5 @@
 import { useEffect, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 import { ArrowLeftIcon, ArrowRightIcon } from './icons.jsx';
 
 // Full-screen enlarged view for a gallery photo/video, with caption + prev/next.
@@ -23,7 +24,7 @@ export default function Lightbox({ photos, index, onClose, onNav }) {
 
   if (!photo) return null;
 
-  return (
+  return createPortal(
     <div className="lightbox" onClick={onClose} role="dialog" aria-modal="true">
       <button className="lightbox__close" onClick={onClose} aria-label="Close">×</button>
       {many && (
@@ -52,6 +53,7 @@ export default function Lightbox({ photos, index, onClose, onNav }) {
           <ArrowRightIcon />
         </button>
       )}
-    </div>
+    </div>,
+    document.body,
   );
 }
