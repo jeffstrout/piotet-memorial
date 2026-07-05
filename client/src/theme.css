@@ -520,13 +520,18 @@ body {
   margin-top: 1.8rem;
   text-align: left;
 }
-/* Home shows two cards — center them as a group instead of left-aligning. */
-.tribute-grid--home {
-  grid-template-columns: repeat(2, minmax(0, 340px));
-  justify-content: center;
-}
+/* Home: two columns on desktop + tablet, single column on phones. */
+.tribute-grid--home { grid-template-columns: repeat(2, 1fr); }
 @media (max-width: 640px) {
-  .tribute-grid--home { grid-template-columns: minmax(0, 400px); }
+  .tribute-grid--home { grid-template-columns: 1fr; }
+}
+
+/* Full Tributes page: a single centered column at a comfortable reading width. */
+.tribute-grid--page {
+  grid-template-columns: 1fr;
+  max-width: 34rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 .tribute-card {
   display: flex;

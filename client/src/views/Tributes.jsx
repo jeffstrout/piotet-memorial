@@ -40,7 +40,7 @@ export default function Tributes({ site, tributes, go, onSubmitted }) {
         </p>
       </div>
 
-      <div className="tribute-grid">
+      <div className="tribute-grid tribute-grid--page">
         {tributes.map((t) => <TributeCard key={t.id} tribute={t} />)}
       </div>
 
