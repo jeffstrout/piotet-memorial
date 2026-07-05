@@ -248,3 +248,80 @@
   padding: 0.5rem 0.6rem; border: 1px solid var(--hairline); background: #fdfbf6; border-radius: 0;
 }
 .media-field .btn--ghost { justify-self: start; }
+
+/* ── Traffic ──────────────────────────────────────────────────────────────── */
+.traffic { display: grid; gap: 1.5rem; }
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+@media (max-width: 640px) { .stat-row { grid-template-columns: repeat(2, 1fr); } }
+.stat {
+  background: #fff;
+  border: 1px solid var(--card-border);
+  padding: 1.1rem 1rem;
+  text-align: center;
+}
+.stat__n {
+  font-family: var(--font-display-serif);
+  font-weight: 600;
+  font-size: 2.4rem;
+  line-height: 1;
+  color: var(--ink-navy);
+}
+.stat__label {
+  font-family: var(--font-display-caps);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 0.5rem;
+}
+
+/* daily bar chart */
+.bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.4rem;
+  height: 150px;
+  padding-top: 0.5rem;
+}
+.bars__col { flex: 1; display: flex; flex-direction: column; align-items: center; height: 100%; justify-content: flex-end; }
+.bars__bar {
+  width: 70%;
+  min-height: 2px;
+  background: var(--gold);
+  border-top: 1px solid var(--gold-accent);
+}
+.bars__x {
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 0.6rem;
+  color: var(--muted-2);
+  margin-top: 0.35rem;
+  white-space: nowrap;
+}
+
+/* by-page bars */
+.pagebar { display: flex; align-items: center; gap: 0.75rem; padding: 0.4rem 0; }
+.pagebar__label {
+  flex: 0 0 6.5rem;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  color: var(--ink-navy);
+}
+.pagebar__track { flex: 1; height: 0.7rem; background: var(--hairline); }
+.pagebar__fill { display: block; height: 100%; background: var(--gold); }
+.pagebar__n {
+  flex: 0 0 3rem;
+  text-align: right;
+  font-family: var(--font-display-caps);
+  font-size: 0.85rem;
+  color: var(--body-slate);
+}
+
+/* recent visits */
+.recent { width: 100%; border-collapse: collapse; }
+.recent td { padding: 0.5rem 0.25rem; border-bottom: 1px solid var(--hairline); font-family: var(--font-body); font-size: 0.92rem; color: var(--body-slate); }
+.recent__dev { color: var(--muted); }
+.recent__time { text-align: right; color: var(--muted); font-size: 0.85rem; white-space: nowrap; }

@@ -60,3 +60,14 @@ CREATE TABLE IF NOT EXISTS songs (
   created_at  TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 CREATE INDEX IF NOT EXISTS songs_order_idx ON songs (published, sort_order, id);
+
+-- Anonymous page views (built-in traffic counter). No IPs, no cookies — just a
+-- random per-browser visitor id (from localStorage), the page, and a timestamp.
+CREATE TABLE IF NOT EXISTS page_views (
+  id         BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  path       TEXT NOT NULL,
+  visitor    TEXT,
+  ua         TEXT,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS page_views_created_idx ON page_views (created_at);

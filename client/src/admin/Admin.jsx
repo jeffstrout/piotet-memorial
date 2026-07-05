@@ -4,6 +4,7 @@ import ContentEditor from './ContentEditor.jsx';
 import PhotosAdmin from './PhotosAdmin.jsx';
 import SongsAdmin from './SongsAdmin.jsx';
 import TributesAdmin from './TributesAdmin.jsx';
+import TrafficAdmin from './TrafficAdmin.jsx';
 import './admin.css';
 
 const TABS = [
@@ -11,6 +12,7 @@ const TABS = [
   { key: 'photos', label: 'Photos' },
   { key: 'songs', label: 'Songs' },
   { key: 'tributes', label: 'Tributes' },
+  { key: 'traffic', label: 'Traffic' },
 ];
 
 export default function Admin() {
@@ -100,6 +102,7 @@ export default function Admin() {
         {tab === 'photos' && <PhotosAdmin onAuthError={onAuthError} />}
         {tab === 'songs' && <SongsAdmin onAuthError={onAuthError} />}
         {tab === 'tributes' && <TributesAdmin onAuthError={onAuthError} />}
+        {tab === 'traffic' && <TrafficAdmin onAuthError={onAuthError} />}
       </main>
     </div>
   );

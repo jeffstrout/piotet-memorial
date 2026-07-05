@@ -56,6 +56,8 @@ export const reorderSongs = (ids) => req('POST', '/admin/songs/reorder', { ids }
 export const saveSongbook = (data) => req('PUT', '/admin/songbook', { data });
 
 // ── Media uploads (DO Spaces, presigned) ─────────────────────────────────────
+export const getStats = () => req('GET', '/admin/stats');
+
 export const getUploadConfig = () => req('GET', '/admin/uploads/config');
 
 // Ask the API for a presigned URL, then PUT the file straight to Spaces.

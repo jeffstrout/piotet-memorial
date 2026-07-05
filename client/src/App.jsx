@@ -5,7 +5,7 @@ import Story from './views/Story.jsx';
 import Pictures from './views/Pictures.jsx';
 import Songs from './views/Songs.jsx';
 import Tributes from './views/Tributes.jsx';
-import { getSite, getSongs, getPhotos, getTributes } from './api.js';
+import { getSite, getSongs, getPhotos, getTributes, track } from './api.js';
 import { fallbackSite, fallbackSongs, fallbackPhotos } from './fallback.js';
 
 const VIEWS = new Set(['home', 'story', 'pictures', 'songs', 'tributes']);
@@ -51,6 +51,9 @@ export default function App() {
     window.addEventListener('popstate', onPop);
     return () => window.removeEventListener('popstate', onPop);
   }, []);
+
+  // Record a page view whenever the view changes (anonymous, no cookies).
+  useEffect(() => { track(view); }, [view]);
 
   return (
     <div className="desk">

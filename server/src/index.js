@@ -13,6 +13,7 @@ import { tributesRouter, adminRouter } from './routes/tributes.js';
 import { siteRouter, adminContentRouter } from './routes/content.js';
 import { publicPhotos, publicSongs, adminMediaRouter } from './routes/media.js';
 import { uploadsRouter } from './routes/uploads.js';
+import { trackRouter, adminStatsRouter } from './routes/analytics.js';
 
 const PORT = process.env.PORT || 3001;
 const APP_COMMIT = process.env.GIT_SHA || 'dev';
@@ -50,6 +51,9 @@ app.get('/api/songs', publicSongs);    // DB-backed songbook, static fallback
 // ── Tributes (Postgres-backed, moderated) ────────────────────────────────────
 app.use('/api/tributes', tributesRouter);
 
+// ── Traffic (anonymous page-view counter) ────────────────────────────────────
+app.use('/api/track', trackRouter);
+
 // ── Admin surface — everything here is behind the Bearer-token guard ─────────
 const admin = express.Router();
 admin.use(requireAdmin);
@@ -57,6 +61,7 @@ admin.use(adminRouter);          // tribute moderation
 admin.use(adminContentRouter);   // editable site content
 admin.use(adminMediaRouter);     // gallery + songbook CRUD
 admin.use(uploadsRouter);        // presigned Spaces uploads
+admin.use(adminStatsRouter);     // traffic stats
 app.use('/api/admin', admin);
 
 // ── Errors ───────────────────────────────────────────────────────────────────
