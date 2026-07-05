@@ -94,3 +94,15 @@ adminRouter.post('/tributes/:id', async (req, res, next) => {
     next(err);
   }
 });
+
+// Permanently remove a tribute (vs 'reject' which keeps it hidden but on record).
+adminRouter.delete('/tributes/:id', async (req, res, next) => {
+  try {
+    const id = Number(req.params.id);
+    if (!Number.isInteger(id)) return res.status(400).json({ error: 'Bad id' });
+    await pool.query('DELETE FROM tributes WHERE id = $1', [id]);
+    res.json({ ok: true });
+  } catch (err) {
+    next(err);
+  }
+});

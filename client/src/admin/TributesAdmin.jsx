@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
-import { getTributes, moderateTribute } from './adminApi.js';
+import { getTributes, moderateTribute, deleteTribute } from './adminApi.js';
 
 const FILTERS = [
   { key: 'pending', label: 'Pending' },
@@ -31,6 +31,20 @@ export default function TributesAdmin({ onAuthError }) {
     try {
       await moderateTribute(id, action);
       setRows((rs) => rs.filter((r) => r.id !== id)); // drops out of the current filter
+    } catch (err) {
+      if (err.status === 401) onAuthError();
+      else setError(err.message);
+    } finally {
+      setBusyId(null);
+    }
+  }
+
+  async function remove(id) {
+    if (!confirm('Permanently delete this tribute? This cannot be undone.')) return;
+    setBusyId(id);
+    try {
+      await deleteTribute(id);
+      setRows((rs) => rs.filter((r) => r.id !== id));
     } catch (err) {
       if (err.status === 401) onAuthError();
       else setError(err.message);
@@ -75,6 +89,9 @@ export default function TributesAdmin({ onAuthError }) {
                     Reject
                   </button>
                 )}
+                <button className="admin-danger" disabled={busyId === t.id} onClick={() => remove(t.id)}>
+                  Delete
+                </button>
               </div>
             </li>
           ))}

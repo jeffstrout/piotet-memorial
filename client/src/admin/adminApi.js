@@ -38,6 +38,7 @@ export const getTributes = (status) =>
   req('GET', `/admin/tributes${status ? `?status=${encodeURIComponent(status)}` : ''}`);
 export const moderateTribute = (id, action) =>
   req('POST', `/admin/tributes/${id}`, { action });
+export const deleteTribute = (id) => req('DELETE', `/admin/tributes/${id}`);
 
 // ── Gallery (photos) ─────────────────────────────────────────────────────────
 export const getPhotos = () => req('GET', '/admin/photos');

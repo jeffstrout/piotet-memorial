@@ -48,19 +48,8 @@ export async function initDb() {
   const schema = await readFile(schemaPath, 'utf8');
   await pool.query(schema);
 
-  const { rows } = await pool.query('SELECT COUNT(*)::int AS n FROM tributes');
-  if (rows[0].n === 0) {
-    const seedPath = join(__dirname, '..', 'content', 'tributes.seed.json');
-    const { tributes } = JSON.parse(await readFile(seedPath, 'utf8'));
-    for (const t of tributes) {
-      await pool.query(
-        `INSERT INTO tributes (author, quote, status, approved_at)
-         VALUES ($1, $2, 'approved', now())`,
-        [t.author, t.quote],
-      );
-    }
-    console.log(`[db] seeded ${tributes.length} approved tributes`);
-  }
+  // Tributes are NOT seeded — the guestbook starts empty and fills with real
+  // memories from visitors (moderated via /admin).
 
   const seeded = await seedContentBlocks();
   if (seeded) console.log(`[db] seeded ${seeded} content blocks`);
