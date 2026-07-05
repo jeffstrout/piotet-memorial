@@ -499,8 +499,10 @@ body {
   padding: 0.3rem;
   color: var(--gold-accent);
   display: inline-flex;
+  text-decoration: none;
   transition: color var(--dur) var(--ease);
 }
+.play-btn:disabled { opacity: 0.4; cursor: default; }
 .icon-btn .icon { width: 1.15rem; height: 1.15rem; }
 .icon-btn:hover { color: var(--link-hover); }
 .song-row.on-dark .icon-btn { color: var(--gold-light); }

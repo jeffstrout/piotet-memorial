@@ -1,9 +1,11 @@
 // Reusable presentational pieces shared across the five views.
 
+import { useSyncExternalStore } from 'react';
 import {
-  PlayIcon, DownloadIcon, StarIcon, QuoteIcon,
+  PlayIcon, PauseIcon, DownloadIcon, StarIcon, QuoteIcon,
   ImageIcon, ArrowRightIcon, ArrowLeftIcon,
 } from './icons.jsx';
+import { toggle, subscribe, getSnapshot } from './player.js';
 
 const NAV = [
   { key: 'story', label: 'His story' },
@@ -103,22 +105,40 @@ export function PhotoFrame({ photo }) {
 }
 
 export function SongRow({ song, onDark }) {
+  const player = useSyncExternalStore(subscribe, getSnapshot);
+  const isThis = !!song.audioUrl && player.url === song.audioUrl;
+  const playing = isThis && player.playing;
+
   return (
     <div className={`song-row${onDark ? ' on-dark' : ''}`}>
       <span className="song-row__index">
         {String(song.index).padStart(2, '0')}
       </span>
-      <button className="play-btn" aria-label={`Play ${song.title}`}>
-        <PlayIcon />
+      <button
+        className="play-btn"
+        onClick={() => toggle(song.audioUrl)}
+        disabled={!song.audioUrl}
+        aria-label={`${playing ? 'Pause' : 'Play'} ${song.title}`}
+      >
+        {playing ? <PauseIcon /> : <PlayIcon />}
       </button>
       <div className="song-row__main">
         <div className="song-row__title">{song.title}</div>
         {song.note && <div className="song-row__note">{song.note}</div>}
       </div>
       <span className="song-row__duration">{song.duration}</span>
-      <button className="icon-btn" aria-label={`Download ${song.title}`}>
-        <DownloadIcon />
-      </button>
+      {song.downloadUrl ? (
+        <a
+          className="icon-btn"
+          href={song.downloadUrl}
+          download
+          aria-label={`Download ${song.title}`}
+        >
+          <DownloadIcon />
+        </a>
+      ) : (
+        <span className="icon-btn" aria-hidden="true"><DownloadIcon /></span>
+      )}
     </div>
   );
 }

@@ -10,9 +10,11 @@ const CONTENT_DIR = join(__dirname, '..', 'content');
 
 const CDN = (process.env.MEDIA_CDN_BASE || '').replace(/\/$/, '');
 
-// Turn a relative Spaces key (e.g. "songs/001.mp3") into a full CDN URL.
-// Falsy keys pass through as null so the client can show a placeholder.
-export const mediaUrl = (key) => (key ? `${CDN}/${key}` : null);
+// Turn a relative Spaces key (e.g. "songs/001 - Sweet Hour of Prayer.mp3") into a
+// full CDN URL. Encode each path segment (keys contain spaces, commas, etc.) so
+// the URL is valid; falsy keys pass through as null for a placeholder.
+export const mediaUrl = (key) =>
+  key ? `${CDN}/${key.split('/').map(encodeURIComponent).join('/')}` : null;
 
 const load = async (name) =>
   JSON.parse(await readFile(join(CONTENT_DIR, name), 'utf8'));

@@ -32,6 +32,11 @@ export const PlayIcon = () => (
     <path d="M8 5v14l11-7z" />
   </Svg>
 );
+export const PauseIcon = () => (
+  <Svg filled>
+    <path d="M7 5h3v14H7zM14 5h3v14h-3z" />
+  </Svg>
+);
 export const DownloadIcon = () => (
   <Svg>
     <path d="M12 3v12" />
