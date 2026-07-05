@@ -1,4 +1,5 @@
-import { Eyebrow, BackLink, PhotoFrame } from '../components.jsx';
+import { Eyebrow, BackLink } from '../components.jsx';
+import Gallery from '../Gallery.jsx';
 
 export default function Pictures({ site, photos, go }) {
   const intro = site?.intros?.pictures || {};
@@ -13,9 +14,13 @@ export default function Pictures({ site, photos, go }) {
             'Photographs and video from across Vincent’s life, gathered by his family.'}
         </p>
       </div>
-      <div className="photo-grid">
-        {photos.map((p) => <PhotoFrame key={p.id} photo={p} />)}
-      </div>
+      {photos.length > 0 ? (
+        <Gallery photos={photos} gridClass="photo-grid" />
+      ) : (
+        <p className="subtitle" style={{ marginTop: '1.5rem' }}>
+          Photos and videos will be added here soon.
+        </p>
+      )}
     </div>
   );
 }

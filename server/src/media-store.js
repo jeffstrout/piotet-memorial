@@ -17,14 +17,16 @@ const readJson = async (name) => JSON.parse(await readFile(join(CONTENT_DIR, nam
 const publicPhoto = (r) => ({
   id: r.id,
   type: r.kind,               // client PhotoFrame expects `type`
-  src: mediaUrl(r.src_key),
+  src: mediaUrl(r.src_key),                       // full image (lightbox)
+  thumb: mediaUrl(r.thumb_key || r.src_key),      // small image (grid)
   poster: mediaUrl(r.poster_key),
   alt: r.alt || r.caption || '',
   caption: r.caption || '',
 });
 const adminPhoto = (r) => ({
-  id: r.id, kind: r.kind, srcKey: r.src_key || '', posterKey: r.poster_key || '',
-  caption: r.caption || '', alt: r.alt || '', sortOrder: r.sort_order, published: r.published,
+  id: r.id, kind: r.kind, srcKey: r.src_key || '', thumbKey: r.thumb_key || '',
+  posterKey: r.poster_key || '', caption: r.caption || '', alt: r.alt || '',
+  sortOrder: r.sort_order, published: r.published,
   src: mediaUrl(r.src_key), poster: mediaUrl(r.poster_key),
 });
 const publicSong = (r, i) => ({
@@ -62,10 +64,10 @@ export async function listAllPhotos() {
 export async function createPhoto(d) {
   const { rows } = await pool.query('SELECT COALESCE(MAX(sort_order), 0) + 1 AS n FROM photos');
   const { rows: out } = await pool.query(
-    `INSERT INTO photos (kind, src_key, poster_key, caption, alt, sort_order, published)
-     VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`,
-    [d.kind === 'video' ? 'video' : 'photo', d.srcKey || null, d.posterKey || null,
-     d.caption || '', d.alt || '', rows[0].n, d.published !== false],
+    `INSERT INTO photos (kind, src_key, thumb_key, poster_key, caption, alt, sort_order, published)
+     VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`,
+    [d.kind === 'video' ? 'video' : 'photo', d.srcKey || null, d.thumbKey || null,
+     d.posterKey || null, d.caption || '', d.alt || '', rows[0].n, d.published !== false],
   );
   return adminPhoto(out[0]);
 }
@@ -74,11 +76,12 @@ export async function updatePhoto(id, d) {
     `UPDATE photos SET
        kind = COALESCE($2, kind),
        src_key = $3, poster_key = $4,
+       thumb_key = COALESCE($8, thumb_key),
        caption = COALESCE($5, caption),
        alt = COALESCE($6, alt),
        published = COALESCE($7, published)
      WHERE id = $1 RETURNING *`,
-    [id, d.kind, d.srcKey ?? null, d.posterKey ?? null, d.caption, d.alt, d.published],
+    [id, d.kind, d.srcKey ?? null, d.posterKey ?? null, d.caption, d.alt, d.published, d.thumbKey ?? null],
   );
   return rows[0] ? adminPhoto(rows[0]) : null;
 }
@@ -168,35 +171,6 @@ export async function reorder(table, ids) {
   }
 }
 
-// ── Seeding on first init ────────────────────────────────────────────────────
-export async function seedMedia() {
-  let seeded = 0;
-  const { rows: pc } = await pool.query('SELECT COUNT(*)::int AS n FROM photos');
-  if (pc[0].n === 0) {
-    const doc = await readJson('photos.json');
-    let i = 1;
-    for (const p of doc.photos) {
-      await pool.query(
-        `INSERT INTO photos (kind, src_key, poster_key, caption, alt, sort_order)
-         VALUES ($1, $2, $3, '', $4, $5)`,
-        [p.type === 'video' ? 'video' : 'photo', p.srcKey || null, p.posterKey || null, p.alt || '', i++],
-      );
-    }
-    seeded += doc.photos.length;
-  }
-  const { rows: sc } = await pool.query('SELECT COUNT(*)::int AS n FROM songs');
-  if (sc[0].n === 0) {
-    const doc = await readJson('songs.json');
-    let i = 1;
-    for (const s of doc.songs) {
-      await pool.query(
-        `INSERT INTO songs (title, note, duration, audio_key, sort_order)
-         VALUES ($1, $2, $3, $4, $5)`,
-        [s.title, s.note, s.duration, s.audioKey || null, i++],
-      );
-    }
-    await saveSongbookMeta({ total: doc.total, downloadAllKey: doc.downloadAllKey });
-    seeded += doc.songs.length;
-  }
-  return seeded;
-}
+// Photos and songs are no longer seeded with placeholders — production holds the
+// real, family-curated media (added via bulk upload / the admin). A fresh/empty
+// gallery or songbook simply renders empty until content is added.

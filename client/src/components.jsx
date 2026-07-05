@@ -82,11 +82,16 @@ export const TextLink = ({ children, onClick }) => (
   </button>
 );
 
-export function PhotoFrame({ photo }) {
+export function PhotoFrame({ photo, onClick }) {
   const isVideo = photo.type === 'video';
-  const media = isVideo ? photo.poster : photo.src;
+  const media = isVideo ? photo.poster : (photo.thumb || photo.src);
   return (
-    <figure className="photo-frame">
+    <button
+      type="button"
+      className="photo-frame"
+      onClick={onClick}
+      aria-label={photo.caption || (isVideo ? 'Play video' : 'View photo')}
+    >
       <div className="photo-frame__media">
         {media ? (
           <img src={media} alt={photo.alt || ''} loading="lazy" />
@@ -100,7 +105,7 @@ export function PhotoFrame({ photo }) {
           <span className="play-badge"><PlayIcon /></span>
         )}
       </div>
-    </figure>
+    </button>
   );
 }
 

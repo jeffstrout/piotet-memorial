@@ -387,11 +387,89 @@ body {
   .photo-grid--home { grid-template-columns: repeat(2, 1fr); }
 }
 .photo-frame {
+  display: block;
+  width: 100%;
   padding: 8px;
   border: 1.5px solid var(--gold);
   background: var(--parchment-card);
   box-shadow: var(--shadow-card);
+  cursor: pointer;
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
 }
+.photo-frame:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* ── Lightbox ─────────────────────────────────────────────────────────────── */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(14, 27, 49, 0.93);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 4vw, 3rem);
+  animation: lb-fade 160ms var(--ease);
+}
+@keyframes lb-fade { from { opacity: 0; } to { opacity: 1; } }
+.lightbox__frame {
+  margin: 0;
+  max-width: min(92vw, 760px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px;
+  border: 1.5px solid var(--gold);
+  background: var(--parchment-card);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+}
+.lightbox__frame img,
+.lightbox__frame video {
+  max-width: 100%;
+  max-height: 78vh;
+  object-fit: contain;
+  background: var(--desk-navy);
+}
+.lightbox__caption {
+  font-family: var(--font-body);
+  font-style: italic;
+  color: var(--body-slate);
+  text-align: center;
+  padding: 0.85rem 0.5rem 0.25rem;
+  font-size: 0.98rem;
+}
+.lightbox__close {
+  position: absolute;
+  top: 1rem;
+  right: 1.35rem;
+  background: none;
+  border: 0;
+  color: var(--parchment-ink);
+  font-size: 2.2rem;
+  line-height: 1;
+}
+.lightbox__close:hover { color: var(--gold-light); }
+.lightbox__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2.9rem;
+  height: 2.9rem;
+  border-radius: 50%;
+  background: rgba(22, 39, 63, 0.72);
+  border: 1px solid var(--gold-light);
+  color: var(--parchment-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--dur) var(--ease);
+}
+.lightbox__nav:hover { background: rgba(22, 39, 63, 0.95); }
+.lightbox__nav .icon { width: 1.25rem; height: 1.25rem; }
+.lightbox__nav--prev { left: clamp(0.5rem, 3vw, 2rem); }
+.lightbox__nav--next { right: clamp(0.5rem, 3vw, 2rem); }
 .photo-frame__media {
   position: relative;
   aspect-ratio: 3 / 4;

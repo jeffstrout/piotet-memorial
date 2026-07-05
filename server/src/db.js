@@ -8,7 +8,6 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import pg from 'pg';
 import { seedContentBlocks } from './site-content.js';
-import { seedMedia } from './media-store.js';
 
 const { Pool } = pg;
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -53,9 +52,6 @@ export async function initDb() {
 
   const seeded = await seedContentBlocks();
   if (seeded) console.log(`[db] seeded ${seeded} content blocks`);
-
-  const media = await seedMedia();
-  if (media) console.log(`[db] seeded ${media} media rows`);
 
   console.log('[db] ready');
 }

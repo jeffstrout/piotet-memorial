@@ -1,6 +1,7 @@
 import {
-  Eyebrow, Divider, DatesRule, TextLink, PhotoFrame, SongRow, TributeCard,
+  Eyebrow, Divider, DatesRule, TextLink, SongRow, TributeCard,
 } from '../components.jsx';
+import Gallery from '../Gallery.jsx';
 import { MusicIcon, DownloadIcon, CalendarIcon, PinIcon, HeartIcon } from '../icons.jsx';
 
 export default function Home({ site, songs, photos, tributes, go }) {
@@ -56,12 +57,16 @@ export default function Home({ site, songs, photos, tributes, go }) {
       <section className="section">
         <Eyebrow>Pictures</Eyebrow>
         <h2 className="section-title">A life in pictures</h2>
-        <div className="photo-grid photo-grid--home">
-          {homePhotos.map((p) => <PhotoFrame key={p.id} photo={p} />)}
-        </div>
-        <div className="section__actions">
-          <TextLink onClick={() => go('pictures')}>See all photos &amp; videos</TextLink>
-        </div>
+        {homePhotos.length > 0 ? (
+          <Gallery photos={homePhotos} gridClass="photo-grid photo-grid--home" />
+        ) : (
+          <p className="section__lead">Photographs will be added here soon.</p>
+        )}
+        {homePhotos.length > 0 && (
+          <div className="section__actions">
+            <TextLink onClick={() => go('pictures')}>See all photos &amp; videos</TextLink>
+          </div>
+        )}
       </section>
 
       {/* Songs — dark songbook plaque */}

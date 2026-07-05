@@ -44,6 +44,8 @@ CREATE TABLE IF NOT EXISTS photos (
   published   BOOLEAN NOT NULL DEFAULT TRUE,
   created_at  TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+-- Optional small thumbnail for the grid (full image loads in the lightbox).
+ALTER TABLE photos ADD COLUMN IF NOT EXISTS thumb_key TEXT;
 CREATE INDEX IF NOT EXISTS photos_order_idx ON photos (published, sort_order, id);
 
 -- Songbook. One row per recording; `audio_key` streams and downloads.
