@@ -6,9 +6,7 @@ import Pictures from './views/Pictures.jsx';
 import Songs from './views/Songs.jsx';
 import Tributes from './views/Tributes.jsx';
 import { getSite, getSongs, getPhotos, getTributes } from './api.js';
-import {
-  fallbackSite, fallbackSongs, fallbackPhotos, fallbackTributes,
-} from './fallback.js';
+import { fallbackSite, fallbackSongs, fallbackPhotos } from './fallback.js';
 
 const VIEWS = new Set(['home', 'story', 'pictures', 'songs', 'tributes']);
 
@@ -17,7 +15,7 @@ export default function App() {
   const [site, setSite] = useState(fallbackSite);
   const [songs, setSongs] = useState(fallbackSongs);
   const [photos, setPhotos] = useState(fallbackPhotos);
-  const [tributes, setTributes] = useState(fallbackTributes);
+  const [tributes, setTributes] = useState([]);
 
   // Content loads from the API; fallbacks keep the site whole if it's offline.
   useEffect(() => {
@@ -27,8 +25,10 @@ export default function App() {
   }, []);
 
   const loadTributes = useCallback(() => {
+    // Always reflect the real list — an empty guestbook should render empty,
+    // not fall back to placeholders.
     getTributes()
-      .then((d) => { if (d.tributes?.length) setTributes(d.tributes); })
+      .then((d) => setTributes(d.tributes || []))
       .catch(() => {});
   }, []);
   useEffect(() => { loadTributes(); }, [loadTributes]);

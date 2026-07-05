@@ -76,11 +76,5 @@ export const fallbackPhotos = Array.from({ length: 12 }, (_, i) => ({
   alt: '',
 }));
 
-export const fallbackTributes = [
-  { id: 1, author: 'Sarah M.', quote: 'Vincent played "Amazing Grace" for my mother the week she passed. I will never forget the peace it brought the whole room.' },
-  { id: 2, author: 'David R.', quote: 'He never missed a Tuesday. Twenty-one years of Tuesdays. That was Vincent.' },
-  { id: 3, author: 'The Chen Family', quote: "Our father didn't speak in his last days, but he hummed along when Vincent played. We are forever grateful." },
-  { id: 4, author: 'Margaret L.', quote: 'A gentle man with a gift he gave away freely. The hospice was warmer for having him in it.' },
-  { id: 5, author: 'James P.', quote: 'I asked him once why he did it. He said no one should be alone with silence. I think of that often.' },
-  { id: 6, author: 'Elena V.', quote: 'He taught me that music is a kind of company. I carry his songs with me still.' },
-];
+// No tribute fallback: the guestbook shows only real, moderated memories (empty
+// until the family and friends add them).

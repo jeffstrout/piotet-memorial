@@ -91,14 +91,21 @@ export default function Home({ site, songs, photos, tributes, go }) {
       <section className="section">
         <Eyebrow>Tributes</Eyebrow>
         <h2 className="section-title">What people remember</h2>
-        <div className="tribute-grid tribute-grid--home">
-          {tributes.slice(0, 2).map((t) => <TributeCard key={t.id} tribute={t} />)}
-        </div>
+        {tributes.length > 0 && (
+          <div className="tribute-grid tribute-grid--home">
+            {tributes.slice(0, 2).map((t) => <TributeCard key={t.id} tribute={t} />)}
+          </div>
+        )}
+        {tributes.length === 0 && (
+          <p className="section__lead">Be the first to share a memory of Vincent.</p>
+        )}
         <div className="section__actions">
           <button className="btn btn--ghost" onClick={() => go('tributes')}>
             <HeartIcon /> Leave a memory
           </button>
-          <TextLink onClick={() => go('tributes')}>Read all tributes</TextLink>
+          {tributes.length > 0 && (
+            <TextLink onClick={() => go('tributes')}>Read all tributes</TextLink>
+          )}
         </div>
       </section>
     </div>

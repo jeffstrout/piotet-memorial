@@ -40,9 +40,13 @@ export default function Tributes({ site, tributes, go, onSubmitted }) {
         </p>
       </div>
 
-      <div className="tribute-grid tribute-grid--page">
-        {tributes.map((t) => <TributeCard key={t.id} tribute={t} />)}
-      </div>
+      {tributes.length > 0 ? (
+        <div className="tribute-grid tribute-grid--page">
+          {tributes.map((t) => <TributeCard key={t.id} tribute={t} />)}
+        </div>
+      ) : (
+        <p className="subtitle">No memories have been shared yet — be the first, below.</p>
+      )}
 
       {/* Leave a memory — dark plaque form */}
       <div className="plaque">
