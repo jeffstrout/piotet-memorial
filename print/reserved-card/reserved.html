@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink-navy:#1a2f4d; --gold:#b99e56; --gold-accent:#a97e33; --rule-gold:#c2a25a;
+    --caps:'Cinzel',serif; --serif:'Cormorant Garamond',serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  @page{ size:11in 8.5in; margin:0; }
+  html,body{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+
+  /* One US-Letter sheet, landscape. Folded across the middle (4.25in) and draped
+     over a chair back — so the upper half is rotated 180° to read correctly on
+     the far side. Background is left unprinted for cream/parchment stock. */
+  .sheet{ width:11in; height:8.5in; position:relative; }
+  .panel{
+    width:11in; height:4.25in; position:relative;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .panel--top{ transform:rotate(180deg); }          /* reads right-way-up on the back side */
+  .panel::before{
+    content:""; position:absolute; inset:0.34in 0.45in;
+    border:1.5px solid var(--gold); pointer-events:none;
+  }
+
+  .inner{ text-align:center; }
+  .star{ width:15px; height:15px; fill:var(--gold-accent); display:block; margin:0 auto; }
+
+  .word{
+    font-family:var(--caps); font-weight:600;
+    font-size:104px; line-height:1;
+    letter-spacing:0.2em; text-indent:0.2em;      /* balance the trailing track */
+    text-transform:uppercase; color:var(--ink-navy);
+    margin:16px 0 14px;
+  }
+
+  .rule{ display:flex; align-items:center; justify-content:center; gap:14px; width:62%; margin:0 auto; }
+  .rule .l{ flex:1; height:1px; background:linear-gradient(90deg,transparent,var(--rule-gold),transparent); }
+
+  .sub{
+    font-family:var(--caps); font-weight:500;
+    font-size:13px; letter-spacing:0.24em; text-transform:uppercase;
+    color:var(--gold-accent); margin-top:13px;
+  }
+
+  /* faint fold ticks at the extreme edges (helps fold accurately) */
+  .tick{ position:absolute; top:4.25in; width:0.16in; height:1px; background:var(--gold); opacity:.55; }
+  .tick--l{ left:0; }
+  .tick--r{ right:0; }
+</style>
+</head>
+<body>
+  <div class="sheet">
+
+    <!-- upper half: rotated so it reads correctly on the reverse side -->
+    <section class="panel panel--top">
+      <div class="inner">
+        <svg class="star" viewBox="0 0 24 24"><path d="M12 2.5 14.9 8.6 21.5 9.5 16.7 14.2 17.9 20.8 12 17.7 6.1 20.8 7.3 14.2 2.5 9.5 9.1 8.6z"/></svg>
+        <h1 class="word">Reserved</h1>
+        <div class="rule">
+          <span class="l"></span>
+          <svg class="star" viewBox="0 0 24 24" style="width:9px;height:9px"><path d="M12 2.5 14.9 8.6 21.5 9.5 16.7 14.2 17.9 20.8 12 17.7 6.1 20.8 7.3 14.2 2.5 9.5 9.1 8.6z"/></svg>
+          <span class="l"></span>
+        </div>
+        <p class="sub">Vincent Piotet &middot; Celebration of Life</p>
+      </div>
+    </section>
+
+    <span class="tick tick--l"></span>
+    <span class="tick tick--r"></span>
+
+    <!-- lower half: reads correctly on the front side -->
+    <section class="panel panel--bottom">
+      <div class="inner">
+        <svg class="star" viewBox="0 0 24 24"><path d="M12 2.5 14.9 8.6 21.5 9.5 16.7 14.2 17.9 20.8 12 17.7 6.1 20.8 7.3 14.2 2.5 9.5 9.1 8.6z"/></svg>
+        <h1 class="word">Reserved</h1>
+        <div class="rule">
+          <span class="l"></span>
+          <svg class="star" viewBox="0 0 24 24" style="width:9px;height:9px"><path d="M12 2.5 14.9 8.6 21.5 9.5 16.7 14.2 17.9 20.8 12 17.7 6.1 20.8 7.3 14.2 2.5 9.5 9.1 8.6z"/></svg>
+          <span class="l"></span>
+        </div>
+        <p class="sub">Vincent Piotet &middot; Celebration of Life</p>
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>
