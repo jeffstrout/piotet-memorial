@@ -61,9 +61,13 @@
   /* section headings + lists */
   .heading{ font-family:var(--serif); font-style:italic; font-weight:600; font-size:30px; color:var(--gold-accent); margin-bottom:14px; }
   .detail{ font-family:var(--caps); font-weight:500; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-navy); line-height:2; }
-  .oos{ font-family:var(--caps); font-weight:600; font-size:11.5px; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-navy); line-height:1.2; margin:16px 0 0; }
+  .oos{ display:flex; justify-content:space-between; align-items:baseline; gap:14px;
+    font-family:var(--caps); font-weight:600; font-size:11.5px; letter-spacing:.09em;
+    text-transform:uppercase; color:var(--ink-navy); line-height:1.2; margin:15px 0 0; text-align:left; }
   .oos:first-of-type{ margin-top:0; }
-  .oos small{ display:block; font-family:var(--serif); font-style:italic; font-weight:500; text-transform:none; font-size:14px; color:var(--muted); margin-top:1px; letter-spacing:0; line-height:1.28; }
+  .oos small{ flex:none; text-align:right; font-family:var(--serif); font-style:italic;
+    font-weight:500; text-transform:none; font-size:14px; color:var(--muted);
+    letter-spacing:0; line-height:1.28; }
   .closing{ font-family:var(--serif); font-style:italic; font-size:19px; line-height:1.4; color:var(--ink-navy); }
 
   /* page 2 — obituary needs a wider, tighter text column than the other panels */
