@@ -69,7 +69,11 @@
     font-weight:500; text-transform:none; font-size:14px; color:var(--muted);
     letter-spacing:0; line-height:1.28; }
   .oos > span{ flex:1 1 auto; min-width:0; text-align:left; }
-  .oos .by{ text-transform:none; font-weight:500; }
+  /* song titles read as titles, not section headings: title-case serif, italic */
+  .oos .songs{ text-transform:none; font-family:var(--serif); font-weight:600;
+    font-size:15px; letter-spacing:0; line-height:1.3; color:var(--ink-navy); }
+  .oos .songs em{ font-style:italic; }
+  .oos .songs .by{ font-style:normal; font-weight:500; font-size:13.5px; color:var(--muted); }
   .closing{ font-family:var(--serif); font-style:italic; font-size:19px; line-height:1.4; color:var(--ink-navy); }
 
   /* page 2 — obituary needs a wider, tighter text column than the other panels */
@@ -163,7 +167,7 @@
     <div class="inner">
       <h2 class="heading">Order of Service</h2>
       <div class="oos">Piano Prelude<small>Gloria Erlandson</small></div>
-      <div class="oos"><span>Only in God <span class="by">by</span> John Foley<br>Leaning on the Everlasting Arms <span class="by">by</span> Anthony Showalter &amp; Elisha Hoffman</span><small>Marguerite Strout<br>Jennie Coleman<br>Jackie Erlandson</small></div>
+      <div class="oos"><span class="songs"><em>Only in God</em> <span class="by">by John Foley</span><br><em>Leaning on the Everlasting Arms</em> <span class="by">by Anthony Showalter &amp; Elisha Hoffman</span></span><small>Marguerite Strout<br>Jennie Coleman<br>Jackie Erlandson</small></div>
       <div class="oos">Welcome<small>James Van Dyke</small></div>
       <div class="oos">Opening Prayer<small>Father Charles Erlandson</small></div>
       <div class="oos">Scripture<small>Pastor Daniel Turner</small></div>
