@@ -17,14 +17,14 @@ design language (see `../../Vincent-Piotet-Style-Guide.pdf`).
 - Panels are numbered as the reader encounters them once folded:
   **1** front cover · **2** inside left · **3** inside right · **4** back.
 - **Sheet 1 (outside):** panel 4 (back cover) | panel 1 (front cover).
-- **Sheet 2 (inside):** panel 2 (obituary — "His Story") | panel 3 (blank for now).
+- **Sheet 2 (inside):** panel 2 (obituary — "His Story") | panel 3 (order of service).
 - Background is intentionally **unprinted** — print on cream/parchment stock
   (~`#EFE7D4`) so the paper provides the color.
 
-Page 3 is deliberately empty pending a final order of service. A draft order of
-service, and the Service / Officiating / Share in the Ministry block that used to
-sit on the inside left, are parked in an HTML comment on that panel in
-`program.html` — remove the comment markers to bring either back.
+The Service / Officiating / Share in the Ministry block that used to sit on the
+inside left, before the obituary took that page, is parked in an HTML comment at
+the end of sheet 2 in `program.html` — remove the comment markers to bring it back
+(it needs a panel of its own, so the layout would have to grow to a second sheet).
 
 ## Printing
 Print **double-sided (flip on short edge)**, then **fold down the middle**.
@@ -46,11 +46,10 @@ Fonts (Cinzel / Cormorant Garamond / EB Garamond) load from Google Fonts at
 render time, so keep a network connection when regenerating.
 
 ## Still to confirm (placeholders / verbatim from the reference)
-- **Page 3 is blank** — order of service to come.
 - Obituary heading currently reads **"His Story"** (matches the website section).
 - Dates shown as years only: **1935 · 2026**. Add full month/day if wanted.
-- Abbreviations in the parked order of service kept verbatim: **"Ftr Erlandson"**,
-  **"Hof Pastor"** — expand if needed.
+- The service time/place and the Hospice of East Texas note are **not currently
+  printed anywhere** — see the parked block noted above.
 - Back cover uses a simple "With love and gratitude from the family." line —
   swap for a favorite verse/poem/second photo if desired.
 - To adjust the cover photo crop, change `object-position` on the portrait `<img>`.
