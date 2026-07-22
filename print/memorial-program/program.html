@@ -64,14 +64,21 @@
   .oos{ font-family:var(--caps); font-weight:500; font-size:11.5px; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-navy); line-height:1; margin:15px 0; }
   .oos small{ display:block; font-size:11.5px; color:var(--muted); margin-top:3px; letter-spacing:.07em; }
   .closing{ font-family:var(--serif); font-style:italic; font-size:19px; line-height:1.4; color:var(--ink-navy); }
+
+  /* page 2 — obituary needs a wider, tighter text column than the other panels */
+  .panel--obit{ padding:0.55in 0.6in; }
+  .inner--wide{ max-width:4.3in; }
+  .obit{ font-family:var(--body); font-size:13.5px; line-height:1.62; color:var(--body-slate); text-align:left; }
+  .obit p{ margin:0 0 0.6em; }
+  .obit p:last-child{ margin-bottom:0; }
 </style>
 </head>
 <body>
 
-<!-- ============ SHEET 1 — OUTSIDE : [ back cover | front cover ] ============ -->
+<!-- ===== SHEET 1 — OUTSIDE : [ page 4 (back) | page 1 (front cover) ] ===== -->
 <div class="sheet">
 
-  <!-- BACK COVER -->
+  <!-- PAGE 4 — BACK COVER -->
   <div class="panel">
     <div class="inner">
       <svg class="star" viewBox="0 0 24 24"><path d="M12 2.5 14.9 8.6 21.5 9.5 16.7 14.2 17.9 20.8 12 17.7 6.1 20.8 7.3 14.2 2.5 9.5 9.1 8.6z"/></svg>
@@ -82,7 +89,7 @@
     </div>
   </div>
 
-  <!-- FRONT COVER -->
+  <!-- PAGE 1 — FRONT COVER -->
   <div class="panel">
     <div class="inner">
       <p class="script" style="font-size:30px;margin-bottom:22px">Celebrating the life of</p>
@@ -94,37 +101,50 @@
 
 </div>
 
-<!-- ============ SHEET 2 — INSIDE : [ service | order of service ] ============ -->
+<!-- ===== SHEET 2 — INSIDE : [ page 2 (obituary) | page 3 (order of service) ] ===== -->
 <div class="sheet">
 
-  <!-- INSIDE LEFT -->
-  <div class="panel">
-    <div class="inner">
-      <h2 class="heading">Service</h2>
-      <p class="detail">
-        July 25th at 4:00 PM<br>
-        Bethel Bible Downtown<br>
-        202 S Broadway Ave<br>
-        Tyler, TX 75702
-      </p>
+  <!-- PAGE 2 — INSIDE LEFT : obituary -->
+  <div class="panel panel--obit">
+    <div class="inner inner--wide">
+      <h2 class="heading" style="font-size:26px;margin-bottom:12px">His Story</h2>
+      <div class="obit">
+        <p>Vincent Oscar Gustave Piotet was born on February 23, 1935, in the Canton
+        de Vaud, Switzerland, the fourth of five children of Dr. Gustave Piotet and
+        Renée Chavannes. He was captivated from boyhood by trains, electronics, and
+        how things worked. He graduated from the Swiss Polytechnic Institute in
+        Zurich in 1960 with a degree in Electrical Engineering. Music stayed with him
+        all his life: he taught himself piano and guitar entirely by ear and dearly
+        loved jazz.</p>
 
-      <div class="rule"><span class="l"></span><svg class="star" viewBox="0 0 24 24" style="width:9px;height:9px"><path d="M12 2.5 14.9 8.6 21.5 9.5 16.7 14.2 17.9 20.8 12 17.7 6.1 20.8 7.3 14.2 2.5 9.5 9.1 8.6z"/></svg><span class="l"></span></div>
+        <p>In 1960 he married Anne Angelique Chavannes, who had first found him by
+        following the sound of his guitar at a party—they were married 57 years until
+        her passing in 2017. He once bet friends he would marry the most beautiful
+        woman in the world, and he won. The couple moved to America, where Vince
+        worked for General Electric on power systems for America's first satellite
+        program and later in GE's pioneering computer department. They raised three
+        daughters—Marguerite, Jennifer, and Jacqueline—and settled in Dallas, Texas.</p>
 
-      <h2 class="heading">Officiating</h2>
-      <p class="detail">Rev. Lucas Ignacio Kabel</p>
+        <p>In 1974, searching for answers, Vince and Anne began visiting a small
+        church, and their humble curiosity about Jesus led the whole family to faith.
+        In 2000 they moved to East Texas to be near their children and grandchildren.
+        Beginning in 2005, Vince volunteered at the Hospice of East Texas, singing and
+        playing guitar for patients several times a week, almost until the very end of
+        his life at 91 years old. His schedule of church, Bible study, workouts, and
+        dinners with family and dear friends was always full, and he loved spending
+        time with his grandchildren and great-grandchildren.</p>
 
-      <div class="rule"><span class="l"></span><svg class="star" viewBox="0 0 24 24" style="width:9px;height:9px"><path d="M12 2.5 14.9 8.6 21.5 9.5 16.7 14.2 17.9 20.8 12 17.7 6.1 20.8 7.3 14.2 2.5 9.5 9.1 8.6z"/></svg><span class="l"></span></div>
-
-      <h2 class="heading">Share in the Ministry</h2>
-      <p class="prose" style="font-size:15px">
-        Vince was deeply invested in the work of Hospice of East Texas. In lieu
-        of flowers, we encourage you to donate and volunteer in support of their
-        ministry.
-      </p>
+        <p>Those who knew him best will remember him for the faithfulness with which
+        he loved God, played his music, and remained endlessly curious to learn more
+        about the beautiful world God made.</p>
+      </div>
     </div>
   </div>
 
-  <!-- INSIDE RIGHT -->
+  <!-- PAGE 3 — INSIDE RIGHT : intentionally blank for now.
+       The order of service goes here once it's final. The previous draft is
+       parked below — delete the comment markers to bring it back.
+
   <div class="panel">
     <div class="inner">
       <h2 class="heading">Order of Service</h2>
@@ -142,6 +162,31 @@
       <p class="closing">Please join us for a reception on the 2nd floor immediately following the service.</p>
     </div>
   </div>
+
+       Also homeless for now — the service details that used to sit on the inside
+       left, before the obituary took that page:
+
+  <div class="panel">
+    <div class="inner">
+      <h2 class="heading">Service</h2>
+      <p class="detail">
+        July 25th at 4:00 PM<br>
+        Bethel Bible Downtown<br>
+        202 S Broadway Ave<br>
+        Tyler, TX 75702
+      </p>
+      <h2 class="heading">Officiating</h2>
+      <p class="detail">Rev. Lucas Ignacio Kabel</p>
+      <h2 class="heading">Share in the Ministry</h2>
+      <p class="prose" style="font-size:15px">
+        Vince was deeply invested in the work of Hospice of East Texas. In lieu
+        of flowers, we encourage you to donate and volunteer in support of their
+        ministry.
+      </p>
+    </div>
+  </div>
+  -->
+  <div class="panel"></div>
 
 </div>
 
