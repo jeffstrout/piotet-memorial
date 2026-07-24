@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink-navy:#1a2f4d; --gold:#b99e56; --gold-accent:#a97e33; --rule-gold:#c2a25a;
+    --caps:'Cinzel',serif; --serif:'Cormorant Garamond',serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  @page{ size:11in 8.5in; margin:0; }
+  html,body{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+
+  /* One US-Letter sheet, landscape. Folded across the middle (4.25in). The upper
+     half is rotated 180° so the sign reads upright from BOTH sides once folded —
+     same construction as the reserved chair card. Background left unprinted for
+     cream/parchment stock. */
+  .sheet{ width:11in; height:8.5in; position:relative; page-break-after:always; }
+  .sheet:last-child{ page-break-after:auto; }
+  .panel{
+    width:11in; height:4.25in; position:relative;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .panel--top{ transform:rotate(180deg); }
+  .panel::before{
+    content:""; position:absolute; inset:0.34in 0.45in;
+    border:1.5px solid var(--gold); pointer-events:none;
+  }
+
+  .inner{ text-align:center; }
+  .star{ width:15px; height:15px; fill:var(--gold-accent); display:block; margin:0 auto; }
+
+  .word{
+    font-family:var(--caps); font-weight:600;
+    font-size:50px; line-height:1;
+    letter-spacing:0.1em; text-indent:0.1em;
+    text-transform:uppercase; color:var(--ink-navy);
+    margin:14px 0 12px;
+  }
+
+  .rule{ display:flex; align-items:center; justify-content:center; gap:14px; width:56%; margin:0 auto; }
+  .rule .l{ flex:1; height:1px; background:linear-gradient(90deg,transparent,var(--rule-gold),transparent); }
+
+  /* the directive line: a floor number ... */
+  .floor{
+    font-family:var(--caps); font-weight:600;
+    font-size:40px; line-height:1; letter-spacing:0.08em; text-indent:0.08em;
+    text-transform:uppercase; color:var(--ink-navy); margin-top:18px;
+  }
+  /* ... or a long arrow */
+  .arrow{
+    width:6in; height:auto; display:block; margin:20px auto 4px;
+    stroke:var(--ink-navy); fill:none; stroke-width:6;
+    stroke-linecap:round; stroke-linejoin:round;
+  }
+  .arrow--left{ transform:scaleX(-1); }
+
+  .sub{
+    font-family:var(--caps); font-weight:500;
+    font-size:13px; letter-spacing:0.24em; text-transform:uppercase;
+    color:var(--gold-accent); margin-top:20px;
+  }
+
+  .tick{ position:absolute; top:4.25in; width:0.16in; height:1px; background:var(--gold); opacity:.55; }
+  .tick--l{ left:0; }
+  .tick--r{ right:0; }
+</style>
+</head>
+<body>
+  <div class="sheet">
+    <section class="panel panel--top">
+      <div class="inner">
+        <svg class="star" viewBox="0 0 24 24"><path d="M12 2.5 14.9 8.6 21.5 9.5 16.7 14.2 17.9 20.8 12 17.7 6.1 20.8 7.3 14.2 2.5 9.5 9.1 8.6z"/></svg>
+        <h1 class="word">Memorial Service</h1>
+        <div class="rule"><span class="l"></span><svg class="star" viewBox="0 0 24 24" style="width:9px;height:9px"><path d="M12 2.5 14.9 8.6 21.5 9.5 16.7 14.2 17.9 20.8 12 17.7 6.1 20.8 7.3 14.2 2.5 9.5 9.1 8.6z"/></svg><span class="l"></span></div>
+        <p class="floor">Third Floor</p>
+        <p class="sub">Vincent Piotet &middot; Celebration of Life</p>
+      </div>
+    </section>
+    <span class="tick tick--l"></span><span class="tick tick--r"></span>
+    <section class="panel panel--bottom">
+      <div class="inner">
+        <svg class="star" viewBox="0 0 24 24"><path d="M12 2.5 14.9 8.6 21.5 9.5 16.7 14.2 17.9 20.8 12 17.7 6.1 20.8 7.3 14.2 2.5 9.5 9.1 8.6z"/></svg>
+        <h1 class="word">Memorial Service</h1>
+        <div class="rule"><span class="l"></span><svg class="star" viewBox="0 0 24 24" style="width:9px;height:9px"><path d="M12 2.5 14.9 8.6 21.5 9.5 16.7 14.2 17.9 20.8 12 17.7 6.1 20.8 7.3 14.2 2.5 9.5 9.1 8.6z"/></svg><span class="l"></span></div>
+        <p class="floor">Third Floor</p>
+        <p class="sub">Vincent Piotet &middot; Celebration of Life</p>
+      </div>
+    </section>
+  </div>
+  <div class="sheet">
+    <section class="panel panel--top">
+      <div class="inner">
+        <svg class="star" viewBox="0 0 24 24"><path d="M12 2.5 14.9 8.6 21.5 9.5 16.7 14.2 17.9 20.8 12 17.7 6.1 20.8 7.3 14.2 2.5 9.5 9.1 8.6z"/></svg>
+        <h1 class="word">Memorial Service</h1>
+        <div class="rule"><span class="l"></span><svg class="star" viewBox="0 0 24 24" style="width:9px;height:9px"><path d="M12 2.5 14.9 8.6 21.5 9.5 16.7 14.2 17.9 20.8 12 17.7 6.1 20.8 7.3 14.2 2.5 9.5 9.1 8.6z"/></svg><span class="l"></span></div>
+        <svg class="arrow" viewBox="0 0 260 44"><line x1="14" y1="22" x2="228" y2="22"/><polyline points="210,6 246,22 210,38"/></svg>
+        <p class="sub">Vincent Piotet &middot; Celebration of Life</p>
+      </div>
+    </section>
+    <span class="tick tick--l"></span><span class="tick tick--r"></span>
+    <section class="panel panel--bottom">
+      <div class="inner">
+        <svg class="star" viewBox="0 0 24 24"><path d="M12 2.5 14.9 8.6 21.5 9.5 16.7 14.2 17.9 20.8 12 17.7 6.1 20.8 7.3 14.2 2.5 9.5 9.1 8.6z"/></svg>
+        <h1 class="word">Memorial Service</h1>
+        <div class="rule"><span class="l"></span><svg class="star" viewBox="0 0 24 24" style="width:9px;height:9px"><path d="M12 2.5 14.9 8.6 21.5 9.5 16.7 14.2 17.9 20.8 12 17.7 6.1 20.8 7.3 14.2 2.5 9.5 9.1 8.6z"/></svg><span class="l"></span></div>
+        <svg class="arrow" viewBox="0 0 260 44"><line x1="14" y1="22" x2="228" y2="22"/><polyline points="210,6 246,22 210,38"/></svg>
+        <p class="sub">Vincent Piotet &middot; Celebration of Life</p>
+      </div>
+    </section>
+  </div>
+  <div class="sheet">
+    <section class="panel panel--top">
+      <div class="inner">
+        <svg class="star" viewBox="0 0 24 24"><path d="M12 2.5 14.9 8.6 21.5 9.5 16.7 14.2 17.9 20.8 12 17.7 6.1 20.8 7.3 14.2 2.5 9.5 9.1 8.6z"/></svg>
+        <h1 class="word">Memorial Service</h1>
+        <div class="rule"><span class="l"></span><svg class="star" viewBox="0 0 24 24" style="width:9px;height:9px"><path d="M12 2.5 14.9 8.6 21.5 9.5 16.7 14.2 17.9 20.8 12 17.7 6.1 20.8 7.3 14.2 2.5 9.5 9.1 8.6z"/></svg><span class="l"></span></div>
+        <svg class="arrow arrow--left" viewBox="0 0 260 44"><line x1="14" y1="22" x2="228" y2="22"/><polyline points="210,6 246,22 210,38"/></svg>
+        <p class="sub">Vincent Piotet &middot; Celebration of Life</p>
+      </div>
+    </section>
+    <span class="tick tick--l"></span><span class="tick tick--r"></span>
+    <section class="panel panel--bottom">
+      <div class="inner">
+        <svg class="star" viewBox="0 0 24 24"><path d="M12 2.5 14.9 8.6 21.5 9.5 16.7 14.2 17.9 20.8 12 17.7 6.1 20.8 7.3 14.2 2.5 9.5 9.1 8.6z"/></svg>
+        <h1 class="word">Memorial Service</h1>
+        <div class="rule"><span class="l"></span><svg class="star" viewBox="0 0 24 24" style="width:9px;height:9px"><path d="M12 2.5 14.9 8.6 21.5 9.5 16.7 14.2 17.9 20.8 12 17.7 6.1 20.8 7.3 14.2 2.5 9.5 9.1 8.6z"/></svg><span class="l"></span></div>
+        <svg class="arrow arrow--left" viewBox="0 0 260 44"><line x1="14" y1="22" x2="228" y2="22"/><polyline points="210,6 246,22 210,38"/></svg>
+        <p class="sub">Vincent Piotet &middot; Celebration of Life</p>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
