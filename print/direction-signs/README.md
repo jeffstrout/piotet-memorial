@@ -11,9 +11,10 @@ the reserved chair card.
   signs split out individually, for printing several of just one.
 
 ## The three signs
-1. **Memorial Service · Third Floor**
-2. **Memorial Service · →** (arrow pointing right)
-3. **Memorial Service · ←** (arrow pointing left)
+All three read **Memorial / 3rd Floor**; the arrow signs add a pointer beneath.
+1. **Memorial · 3rd Floor** (no arrow — the "you're here" sign)
+2. **Memorial · 3rd Floor · →** (arrow pointing right)
+3. **Memorial · 3rd Floor · ←** (arrow pointing left)
 
 Each carries a small "Vincent Piotet · Celebration of Life" line.
 
