@@ -65,10 +65,15 @@
   .tick{ position:absolute; top:4.25in; width:0.16in; height:1px; background:var(--gold); opacity:.55; }
   .tick--l{ left:0; }
   .tick--r{ right:0; }
+
+  /* the no-arrow sign has room to spare — set its type larger */
+  .sheet--plain .word{ font-size:128px; margin:10px 0 10px; }
+  .sheet--plain .floor{ font-size:46px; margin-top:16px; }
+  .sheet--plain .sub{ font-size:13px; margin-top:18px; }
 </style>
 </head>
 <body>
-  <div class="sheet">
+  <div class="sheet sheet--plain">
     <section class="panel panel--top">
       <div class="inner">
         <svg class="star" viewBox="0 0 24 24"><path d="M12 2.5 14.9 8.6 21.5 9.5 16.7 14.2 17.9 20.8 12 17.7 6.1 20.8 7.3 14.2 2.5 9.5 9.1 8.6z"/></svg>
