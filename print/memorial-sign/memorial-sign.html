@@ -19,7 +19,7 @@
   .sheet{
     width:11in; height:8.5in; position:relative; background:#fff;
     display:flex; flex-direction:column; align-items:center;
-    padding:0.95in 0.8in 0.8in;
+    padding:0.95in 0.8in 1.35in;
   }
   /* gold keyline frame */
   .sheet::before{
@@ -52,6 +52,10 @@
     font-size:30px; line-height:1.2; color:var(--ink-navy); margin-top:12px;
   }
 
+  /* large directional arrow, dropped to the lower area */
+  .arrow-big{ width:8in; height:auto; display:block; margin:auto auto 0; color:var(--ink-navy); }
+  .arrow--left{ transform:scaleX(-1); }
+
   /* identity line at the foot of the sign */
   .credit{
     position:absolute; left:0; right:0; bottom:0.78in; text-align:center;
@@ -68,6 +72,7 @@
     <div class="rule"><span class="l"></span><svg class="star" viewBox="0 0 24 24"><path d="M12 2.5 14.9 8.6 21.5 9.5 16.7 14.2 17.9 20.8 12 17.7 6.1 20.8 7.3 14.2 2.5 9.5 9.1 8.6z"/></svg><span class="l"></span></div>
     <p class="place">3rd Floor &middot; Bethel Bible Church</p>
     <p class="place-note">above the Foundry Coffee House</p>
+    <svg class="arrow-big arrow--left" viewBox="0 0 420 60"><path d="M14 23 H362 L354 15 L412 30 L354 45 L362 37 H14 Z" fill="currentColor"/></svg>
     <p class="credit">Vincent Piotet &middot; Celebration of Life</p>
   </div>
 </body>
