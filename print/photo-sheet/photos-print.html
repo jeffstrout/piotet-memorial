@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  :root{ --gold:#b99e56; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  @page{ size:8.5in 11in; margin:0; }
+  html,body{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .page{
+    width:8.5in; height:11in; padding:0.5in; background:#fff;
+    display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr;
+    gap:0.32in; page-break-after:always;
+  }
+  .page:last-child{ page-break-after:auto; }
+  .cell{ display:flex; align-items:center; justify-content:center; overflow:hidden; }
+  /* keyline hugs the actual photo, not the empty cell */
+  .cell img{ max-width:100%; max-height:100%; display:block; box-shadow:0 0 0 1.5px var(--gold); }
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="cell"><img src="p01.jpg" alt=""></div>
+    <div class="cell"><img src="p02.jpg" alt=""></div>
+    <div class="cell"><img src="p03.jpg" alt=""></div>
+    <div class="cell"><img src="p04.jpg" alt=""></div>
+  </div>
+  <div class="page">
+    <div class="cell"><img src="p05.jpg" alt=""></div>
+    <div class="cell"><img src="p06.jpg" alt=""></div>
+    <div class="cell"><img src="p07.jpg" alt=""></div>
+    <div class="cell"><img src="p08.jpg" alt=""></div>
+  </div>
+  <div class="page">
+    <div class="cell"><img src="p09.jpg" alt=""></div>
+    <div class="cell"><img src="p10.jpg" alt=""></div>
+    <div class="cell"><img src="p11.jpg" alt=""></div>
+    <div class="cell"><img src="p12.jpg" alt=""></div>
+  </div>
+  <div class="page">
+    <div class="cell"><img src="p13.jpg" alt=""></div>
+    <div class="cell"><img src="p14.jpg" alt=""></div>
+    <div class="cell"><img src="p15.jpg" alt=""></div>
+    <div class="cell"><img src="p16.jpg" alt=""></div>
+  </div>
+  <div class="page">
+    <div class="cell"><img src="p17.jpg" alt=""></div>
+    <div class="cell"><img src="p18.jpg" alt=""></div>
+    <div class="cell"><img src="p19.jpg" alt=""></div>
+    <div class="cell"><img src="p20.jpg" alt=""></div>
+  </div>
+  <div class="page">
+    <div class="cell"><img src="p21.jpg" alt=""></div>
+    <div class="cell"><img src="p22.jpg" alt=""></div>
+    <div class="cell"><img src="p23.jpg" alt=""></div>
+    <div class="cell"><img src="p24.jpg" alt=""></div>
+  </div>
+</body>
+</html>
