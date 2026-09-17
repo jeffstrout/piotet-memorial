@@ -36,6 +36,8 @@ piotet-memorial/
 ├── .do/app.yaml                 # DO App Platform spec (static site + API + Postgres + domain)
 ├── Vincent-Piotet-Style-Guide.pdf
 ├── print/memorial-program/      # the printed bifold service program (source + PDFs)
+├── print/photo-sheet/           # printed photo keepsake (4-up sheets + PDF)
+├── print/Photos/                # source family photos for the photo-sheet
 ├── client/                      # React 18 + Vite → static site
 │   └── src/
 │       ├── App.jsx              # view routing + history + page-view tracking
