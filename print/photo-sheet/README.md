@@ -38,3 +38,13 @@ To re-normalize from the source originals in `../Photos/`:
 i=0; for f in $(ls -1 ../Photos | grep -v '^README' | sort); do i=$((i+1)); \
   sips -s format jpeg -Z 1600 "../Photos/$f" --out "$(printf p%02d.jpg $i)"; done
 ```
+
+`sips` keeps camera metadata. Strip location and identifying EXIF/XMP/IPTC
+(make, model, serial, owner) before committing. The command below keeps
+orientation and the color profile and does not re-encode the image:
+
+```bash
+exiftool -overwrite_original -all= -tagsFromFile @ \
+  -Orientation -QuickTime:Rotation -icc_profile \
+  -ext jpg -ext jpeg .
+```
