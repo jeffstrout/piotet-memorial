@@ -35,7 +35,7 @@ work. The SPA is served for all paths via App Platform's `catchall_document`.
 piotet-memorial/
 ├── .do/app.yaml                 # DO App Platform spec (static site + API + Postgres + domain)
 ├── Vincent-Piotet-Style-Guide.pdf
-├── print/memorial-program/      # the printed bifold service program (source + PDFs)
+├── print/memorial-program/      # printed service program: landscape bifold + letter duplex
 ├── print/photo-sheet/           # printed photo keepsake (4-up sheets + PDF)
 ├── print/Photos/                # source family photos for the photo-sheet
 ├── client/                      # React 18 + Vite → static site
