@@ -5,7 +5,8 @@ import {
   PlayIcon, PauseIcon, DownloadIcon, StarIcon, QuoteIcon,
   ImageIcon, ArrowRightIcon, ArrowLeftIcon,
 } from './icons.jsx';
-import { toggle, subscribe, getSnapshot } from './player.js';
+import { toggle, subscribe, getSnapshot, getServerSnapshot } from './player.js';
+import { followLink, pathForView } from './routes.js';
 
 const NAV = [
   { key: 'story', label: 'His story' },
@@ -17,18 +18,24 @@ const NAV = [
 export function Header({ view, go }) {
   return (
     <header className="site-header">
-      <button className="brand" onClick={() => go('home')} aria-label="Vincent Piotet — home">
+      <a
+        className="brand"
+        href="/"
+        onClick={(e) => followLink(e, go, 'home')}
+        aria-label="Vincent Piotet — home"
+      >
         Vincent Piotet
-      </button>
+      </a>
       <nav className="site-nav">
         {NAV.map((n) => (
-          <button
+          <a
             key={n.key}
-            onClick={() => go(n.key)}
-            aria-current={view === n.key}
+            href={pathForView(n.key)}
+            onClick={(e) => followLink(e, go, n.key)}
+            aria-current={view === n.key ? 'page' : undefined}
           >
             {n.label}
-          </button>
+          </a>
         ))}
       </nav>
     </header>
@@ -69,17 +76,17 @@ export function DatesRule({ born, died }) {
 }
 
 export const BackLink = ({ go }) => (
-  <button className="tlink tlink--back" onClick={() => go('home')}>
+  <a className="tlink tlink--back" href="/" onClick={(e) => followLink(e, go, 'home')}>
     <ArrowLeftIcon />
     Back to home
-  </button>
+  </a>
 );
 
-export const TextLink = ({ children, onClick }) => (
-  <button className="tlink" onClick={onClick}>
+export const TextLink = ({ children, href, onClick }) => (
+  <a className="tlink" href={href} onClick={onClick}>
     {children}
     <ArrowRightIcon />
-  </button>
+  </a>
 );
 
 export function PhotoFrame({ photo, onClick }) {
@@ -110,7 +117,7 @@ export function PhotoFrame({ photo, onClick }) {
 }
 
 export function SongRow({ song, onDark }) {
-  const player = useSyncExternalStore(subscribe, getSnapshot);
+  const player = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
   const isThis = !!song.audioUrl && player.url === song.audioUrl;
   const playing = isThis && player.playing;
 

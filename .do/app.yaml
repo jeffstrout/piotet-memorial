@@ -1,72 +1,34 @@
 # DigitalOcean App Platform spec for the Vincent Piotet Memorial.
 #
-# Architecture mirrors jeffstrout/split-flap's DO path: a static React/Vite
-# client + a Node/Express API, deployed as one App. Two additions the memorial
-# needs: a managed Postgres DB (moderated tributes) and DO Spaces + CDN (media).
+# Fully static site. Page content is prerendered from client/src/data into
+# dist/<route>/index.html. Photos, songs, and the download-all archive stay on
+# the Spaces CDN (https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com);
+# those URLs are baked into the data files. There is no API service and no
+# database.
 #
-# Auto-update: deploy_on_push: true — every push to `main` triggers App Platform
-# to rebuild and redeploy automatically (the hands-off behavior from split-flap,
-# done natively on DO — no Watchtower needed for a hosted web app).
+# App Platform does NOT apply this file on git push. deploy_on_push only
+# rebuilds components that are already in the *live* spec. After this change
+# is on main, apply it explicitly:
 #
-# First-time setup (or after editing this file):
-#   doctl apps create --spec .do/app.yaml       # create the app
-#   doctl apps update <app-id> --spec .do/app.yaml   # apply changes
+#   doctl apps update 8b2eca84-318b-43ca-adc2-a5f701d5cb82 --spec .do/app.yaml
+#
+# The production pg_dump is archived (private, Jeff's Drive, 2026-10-18).
+# Applying this spec removes the api service and the managed Postgres database.
 name: piotet-memorial
+region: nyc
 
-# ── API service (Express) ────────────────────────────────────────────────────
-services:
-  - name: api
-    github:
-      repo: jeffstrout/piotet-memorial
-      branch: main
-      deploy_on_push: true
-    source_dir: server
-    environment_slug: node-js
-    instance_count: 1
-    instance_size_slug: basic-xxs        # $5/mo — 512MB RAM, 1 vCPU
-    http_port: 3001
-    health_check:
-      http_path: /api/health
-    run_command: npm start
-    envs:
-      - key: NODE_ENV
-        scope: RUN_TIME
-        value: production
-      - key: ALLOWED_ORIGINS
-        scope: RUN_TIME
-        value: ${_self.PUBLIC_URL}
-      - key: DATABASE_URL
-        scope: RUN_TIME
-        value: ${tributes-db.DATABASE_URL}   # injected by the managed DB below
-      # ADMIN_TOKEN (tribute moderation) is intentionally NOT in this committed
-      # spec — a placeholder here would fail `doctl apps create`, and a real
-      # value must never be committed to a public repo. After the first deploy,
-      # add it as an encrypted App-level env var:
-      #   Dashboard → App → Settings → api component → Environment Variables
-      #   (key: ADMIN_TOKEN, type: Encrypted, value: a long random string)
-      # Until it's set, /api/admin/* safely returns 401 (moderation locked).
-      - key: MEDIA_CDN_BASE
-        scope: RUN_TIME
-        value: https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com
-      # Spaces uploads (Milestone 3). Non-secret settings live here; the key/
-      # secret are added as encrypted App-level env vars after the Space exists
-      # (Dashboard → App → api → Environment Variables): SPACES_KEY, SPACES_SECRET.
-      # Until both are set, uploads are disabled and /admin falls back to pasting
-      # storage keys — nothing breaks.
-      - key: SPACES_BUCKET
-        scope: RUN_TIME
-        value: piotet-memorial
-      - key: SPACES_REGION
-        scope: RUN_TIME
-        value: nyc3
-      - key: SPACES_ENDPOINT
-        scope: RUN_TIME
-        value: https://nyc3.digitaloceanspaces.com
-    routes:
-      - path: /api
-        preserve_path_prefix: true
+# www is the canonical host (PRIMARY). The apex is listed so App Platform can
+# serve it and issue a certificate. The ingress rule below 301s the apex to
+# https://www and keeps the path — but it only runs for requests that reach
+# this app. https://vincepiotet.com currently 301s to http://www from a non-DO
+# host (registrar/DNS forwarding). Point the apex A/ALIAS at App Platform
+# instead of that forwarder; the yaml cannot change that hop.
+domains:
+  - domain: www.vincepiotet.com
+    type: PRIMARY
+  - domain: vincepiotet.com
+    type: ALIAS
 
-# ── Static client (React + Vite) ─────────────────────────────────────────────
 static_sites:
   - name: web
     github:
@@ -77,18 +39,27 @@ static_sites:
     build_command: npm install && npm run build
     output_dir: dist
     environment_slug: node-js
-    envs:
-      # Baked into the build so the client calls the same-origin /api.
-      - key: VITE_API_BASE
-        scope: BUILD_TIME
-        value: /api
-    routes:
-      - path: /
-    catchall_document: index.html          # SPA fallback for client-side routes
+    index_document: index.html
+    # Unknown paths serve the home page. Known routes are real files
+    # (story/index.html, …) so a direct URL returns that page's HTML.
+    catchall_document: index.html
 
-# ── Managed Postgres (moderated tributes) ────────────────────────────────────
-databases:
-  - name: tributes-db
-    engine: PG
-    version: "16"
-    production: false                      # dev DB (~$7/mo); flip to true to scale up
+ingress:
+  rules:
+    # Apex → https://www, keeping the original path (uri is omitted on purpose;
+    # setting uri would replace the whole path).
+    - match:
+        authority:
+          exact: vincepiotet.com
+        path:
+          prefix: /
+      redirect:
+        authority: www.vincepiotet.com
+        scheme: https
+        redirect_code: 301
+    - match:
+        path:
+          prefix: /
+      component:
+        name: web
+        preserve_path_prefix: true
