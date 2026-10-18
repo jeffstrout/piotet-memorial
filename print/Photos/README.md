@@ -9,6 +9,21 @@ The numbered `p01.jpg` … `p24.jpg` copies in `../photo-sheet/` are
 print-normalized (HEIC→JPEG, oriented, 1600 px on the long edge). Re-normalize
 from this folder if the originals change — see `../photo-sheet/README.md`.
 
+Before committing anything in this folder, strip location and identifying
+camera/owner metadata (make, model, serial, owner, EXIF/XMP/IPTC). Keep the
+orientation tag, HEIF rotation, and color profile so the photo still displays
+upright, without re-encoding:
+
+```bash
+exiftool -overwrite_original -all= -tagsFromFile @ \
+  -Orientation -QuickTime:Rotation -icc_profile \
+  -ext jpg -ext jpeg -ext JPG -ext HEIC -ext heic -ext png .
+```
+
+A file named `.heic` that is actually a JPEG has to be rewritten as a JPEG
+(ExifTool will not write a HEIC container onto JPEG bytes). Do not rename the
+committed file.
+
 ## Files (24)
 
 - `2012-08-25 19.19.46.JPG`

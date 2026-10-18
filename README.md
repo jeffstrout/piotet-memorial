@@ -34,7 +34,9 @@ no server and no database at runtime.
 piotet-memorial/
 ├── .do/app.yaml                 # DO App Platform spec (static site + domains)
 ├── Vincent-Piotet-Style-Guide.pdf
-├── print/                       # printed program, signs, photo sheet (not the site)
+├── print/memorial-program/      # printed program: landscape bifold + letter duplex
+├── print/photo-sheet/           # printed photo keepsake (4-up sheets + PDF)
+├── print/Photos/                # source family photos for the photo-sheet
 └── client/                      # React 18 + Vite → static site
     └── src/
         ├── App.jsx              # view routing + history
@@ -95,17 +97,19 @@ live app match the file:
 doctl apps update 8b2eca84-318b-43ca-adc2-a5f701d5cb82 --spec .do/app.yaml
 ```
 
-Apply that only after a `pg_dump` of the production database is archived
-somewhere outside this repo. The update removes the Express service and the
-managed Postgres database.
+The production database dump is archived (private, Jeff's Drive, 2026-10-18).
+The update removes the Express service and the managed Postgres database.
 
 **Media:** Space `piotet-memorial` (nyc3), CDN
 `piotet-memorial.nyc3.cdn.digitaloceanspaces.com`.
 
-**Domains:** `www.vincepiotet.com` is PRIMARY. `vincepiotet.com` is an ALIAS that
-redirects to `https://www`. GoDaddy's HTTP-only forwarder does not cover
-`https://vincepiotet.com`; the apex DNS record has to point at App Platform
-(A/ALIAS to the app ingress) for that redirect to run. DO issues the TLS certs.
+**Domains:** `www.vincepiotet.com` is PRIMARY. `vincepiotet.com` is an ALIAS.
+The spec also has an ingress rule that 301s the apex to `https://www` and keeps
+the path. That rule only runs once apex DNS points at App Platform. Today
+`https://vincepiotet.com` 301s to `http://www.vincepiotet.com` from a non-DO
+host (registrar/DNS forwarding). Replacing that forwarder with an A/ALIAS
+record to the app ingress is a DNS change, not a code change. DO issues the
+TLS certs after the domain is on the app.
 
 ## Content snapshot
 

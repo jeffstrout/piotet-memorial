@@ -12,15 +12,17 @@
 #
 #   doctl apps update 8b2eca84-318b-43ca-adc2-a5f701d5cb82 --spec .do/app.yaml
 #
-# Do that only after a pg_dump of the production database is archived. Applying
-# this spec removes the api service and the managed Postgres database.
+# The production pg_dump is archived (private, Jeff's Drive, 2026-10-18).
+# Applying this spec removes the api service and the managed Postgres database.
 name: piotet-memorial
 region: nyc
 
-# www is the canonical host. The apex redirects to https://www (path preserved)
-# so https://vincepiotet.com works — GoDaddy forwarding only covers http, and
-# only to http://www. DNS for the apex must point at App Platform (A/ALIAS to
-# the app ingress), not at GoDaddy's forwarder, or the redirect never runs.
+# www is the canonical host (PRIMARY). The apex is listed so App Platform can
+# serve it and issue a certificate. The ingress rule below 301s the apex to
+# https://www and keeps the path — but it only runs for requests that reach
+# this app. https://vincepiotet.com currently 301s to http://www from a non-DO
+# host (registrar/DNS forwarding). Point the apex A/ALIAS at App Platform
+# instead of that forwarder; the yaml cannot change that hop.
 domains:
   - domain: www.vincepiotet.com
     type: PRIMARY

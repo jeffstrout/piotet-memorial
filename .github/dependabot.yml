@@ -1,0 +1,7 @@
+# Weekly npm updates for the static client, including security PRs.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /client
+    schedule:
+      interval: weekly
