@@ -2,7 +2,8 @@ import {
   Eyebrow, Divider, DatesRule, TextLink, SongRow, TributeCard,
 } from '../components.jsx';
 import Gallery from '../Gallery.jsx';
-import { MusicIcon, DownloadIcon, CalendarIcon, PinIcon, HeartIcon } from '../icons.jsx';
+import { DownloadIcon, CalendarIcon, PinIcon, HeartIcon } from '../icons.jsx';
+import { followLink } from '../routes.js';
 
 export default function Home({ site, songs, photos, tributes, go }) {
   const { person, service } = site;
@@ -48,7 +49,7 @@ export default function Home({ site, songs, photos, tributes, go }) {
         <h2 className="section-title">{site.story.title}</h2>
         <p className="section__lead">{site.story.lead}</p>
         <div className="section__actions">
-          <TextLink onClick={() => go('story')}>Read his full story</TextLink>
+          <TextLink href="/story" onClick={(e) => followLink(e, go, 'story')}>Read his full story</TextLink>
         </div>
       </section>
 
@@ -65,7 +66,7 @@ export default function Home({ site, songs, photos, tributes, go }) {
         )}
         {homePhotos.length > 0 && (
           <div className="section__actions">
-            <TextLink onClick={() => go('pictures')}>See all photos &amp; videos</TextLink>
+            <TextLink href="/pictures" onClick={(e) => followLink(e, go, 'pictures')}>See all photos &amp; videos</TextLink>
           </div>
         )}
       </section>
@@ -88,7 +89,7 @@ export default function Home({ site, songs, photos, tributes, go }) {
             ) : (
               <button className="btn" disabled><DownloadIcon /> Download all {songs.total}</button>
             )}
-            <TextLink onClick={() => go('songs')}>View the full songbook</TextLink>
+            <TextLink href="/songs" onClick={(e) => followLink(e, go, 'songs')}>View the full songbook</TextLink>
           </div>
         </div>
       </div>
@@ -103,15 +104,12 @@ export default function Home({ site, songs, photos, tributes, go }) {
           </div>
         )}
         {tributes.length === 0 && (
-          <p className="section__lead">Be the first to share a memory of Vincent.</p>
+          <p className="section__lead">The tribute book is closed.</p>
         )}
         <div className="section__actions">
-          <button className="btn btn--ghost" onClick={() => go('tributes')}>
-            <HeartIcon /> Leave a memory
-          </button>
-          {tributes.length > 0 && (
-            <TextLink onClick={() => go('tributes')}>Read all tributes</TextLink>
-          )}
+          <a className="btn btn--ghost" href="/tributes" onClick={(e) => followLink(e, go, 'tributes')}>
+            <HeartIcon /> Read the tributes
+          </a>
         </div>
       </section>
     </div>

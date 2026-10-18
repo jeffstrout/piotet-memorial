@@ -19,6 +19,11 @@ export function getSnapshot() {
   return snapshot;
 }
 
+// Same initial snapshot the server render uses, so hydration matches.
+export function getServerSnapshot() {
+  return snapshot;
+}
+
 // Play the given url, toggling pause if it's already the current track.
 export function toggle(url) {
   if (!url) return;

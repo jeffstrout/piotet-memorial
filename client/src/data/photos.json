@@ -1,0 +1,409 @@
+{
+  "photos": [
+    {
+      "id": "25",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/001%20-%20GPP%20Hero.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/001%20-%20GPP%20Hero-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "26",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/002%20-%20IMG_0997.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/002%20-%20IMG_0997-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "27",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/003%20-%20GPP%20and%20Sisters.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/003%20-%20GPP%20and%20Sisters-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "28",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/004%20-%20IMG_4491.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/004%20-%20IMG_4491-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "29",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/005%20-%20GPP%20A%20and%20R.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/005%20-%20GPP%20A%20and%20R-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "30",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/006-%20IMG_1270.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/006-%20IMG_1270-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "31",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/007-%20IMG_8304.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/007-%20IMG_8304-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "32",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/1234752_10153180766030463_854658259_n.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/1234752_10153180766030463_854658259_n-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "33",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/1BB1F193-AE8B-4ECC-B106-23EE76094586.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/1BB1F193-AE8B-4ECC-B106-23EE76094586-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "34",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/20171007_141457.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/20171007_141457-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "35",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/20171007_141503.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/20171007_141503-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "36",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/20190223_133920.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/20190223_133920-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "37",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/2022-12-28.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/2022-12-28-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "38",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/2022-12-28%20copy.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/2022-12-28%20copy-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "39",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/59425_4718327886841_1371639906_n.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/59425_4718327886841_1371639906_n-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "40",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/DE3EBC7A-0171-458C-A6D8-1FCCECCDF8A9.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/DE3EBC7A-0171-458C-A6D8-1FCCECCDF8A9-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "41",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/DSC02164.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/DSC02164-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "42",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_0169.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_0169-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "43",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_0392.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_0392-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "44",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_0762.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_0762-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "45",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_0988.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_0988-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "46",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_1017.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_1017-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "47",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_1022.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_1022-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "48",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_1316.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_1316-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "49",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_1683.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_1683-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "50",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_2994.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_2994-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "51",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_3129.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_3129-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "52",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_3744.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_3744-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "53",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_3980.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_3980-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "54",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_4133.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_4133-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "55",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_4134.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_4134-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "56",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_4487.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_4487-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "57",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_4527.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_4527-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "58",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_5116.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_5116-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "59",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_5119.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_5119-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "60",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_5219.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_5219-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "61",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_5362.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_5362-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "62",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_5402.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_5402-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "63",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_6163.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_6163-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "64",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_6464.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_6464-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "65",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_6626.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_6626-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "66",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_6829.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_6829-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "67",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_6863.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_6863-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "68",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_7188.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_7188-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    },
+    {
+      "id": "69",
+      "type": "photo",
+      "src": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_8141.jpg",
+      "thumb": "https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com/photos/IMG_8141-thumb.jpg",
+      "poster": null,
+      "alt": "",
+      "caption": ""
+    }
+  ]
+}

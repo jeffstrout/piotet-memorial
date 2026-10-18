@@ -8,22 +8,24 @@ https://www.vincepiotet.com**. Warm "engraved keepsake" aesthetic (navy / antiqu
 gold / parchment, humanist serifs). Built from a design handoff bundle; the visual
 spec is authoritative — preserve fidelity. See README.md for the full picture.
 
-## Architecture (mirrors the DO path of jeffstrout/split-flap)
+## Architecture
 - **client/** — React 18 + Vite static site. Five views (`home`, `story`,
   `pictures`, `songs`, `tributes`) switched by state in `src/App.jsx`, wired into
   browser history (pushState/popstate) so Back and deep links (`/songs`, …) work;
-  no router library. Design system lives in `src/theme.css` (CSS custom
-  properties) + `src/components.jsx` + `src/icons.jsx`. `src/admin/` is the
-  password-protected editor app (rendered when the path starts with `/admin`).
-- **server/** — Node + Express API (`type: module`, Node 20+). Postgres-backed
-  editable content, tributes, gallery, songbook, and page-view analytics; static
-  `content/*.json` is only a fallback when the DB is unreachable.
-- **DigitalOcean App Platform** via `.do/app.yaml`: static site + API + managed
-  Postgres + the `www.vincepiotet.com` domain. `deploy_on_push: true` → push to
-  `main` auto-deploys. Data-only changes go through the admin API (no deploy).
-- **Media** (audio/photos/video) lives in **DO Spaces + CDN**, never in git.
-  Referenced by relative key; `server/src/content.js` `mediaUrl()` prefixes
-  `MEDIA_CDN_BASE` and URL-encodes the key.
+  no router library. `npm run build` also pre-renders each view to its own
+  `dist/<route>/index.html` (`src/entry-server.jsx` + `scripts/prerender.js`) so
+  the HTML contains the page. Design system lives in `src/theme.css` (CSS custom
+  properties) + `src/components.jsx` + `src/icons.jsx`.
+- **Content** is `client/src/data/*.json`, imported by `src/content.js`. No
+  runtime `/api` calls, no server, no database.
+- **DigitalOcean App Platform** via `.do/app.yaml`: static site only, plus the
+  `www.vincepiotet.com` domain and an apex → `https://www` redirect. The file is
+  not auto-applied; `doctl apps update <id> --spec .do/app.yaml` pushes it.
+  `deploy_on_push: true` rebuilds the static site on push to `main` once that
+  spec is what is live.
+- **Media** (audio/photos/video) lives in **DO Spaces + CDN**
+  (`https://piotet-memorial.nyc3.cdn.digitaloceanspaces.com`), never in git. The
+  data files store full CDN URLs.
 
 ## Conventions
 - **Square corners everywhere** (`border-radius: 0`) except the circular portrait.
@@ -34,30 +36,20 @@ spec is authoritative — preserve fidelity. See README.md for the full picture.
   default 1em). No icon fonts, **no emoji**.
 - **Responsive** via `clamp()` / media queries — never the prototype's
   em-inheritance trick.
-- **No placeholder seeding.** Photos, songs, and tributes start empty in a fresh
-  DB and fill from real content; don't reintroduce dev seed data (it would show
-  fake content in production). Content blocks (site text) do seed sensible defaults.
+- **No placeholder content.** `src/data` is the production snapshot. Don't replace
+  photos, songs, or tributes with invented samples.
 - **Overlays render via portals** to `document.body` (see `Lightbox.jsx`) so
   `position: fixed` isn't broken by a transformed ancestor (`.view-enter`).
+- **Tributes are closed.** `tributes.json` is approved tributes only (`id`,
+  `author`, `quote`). Do not add a submission form, and do not commit emails,
+  IPs, moderation status, or anything the public page does not show.
 
-## Tributes moderation
-Submissions POST as `pending` and are hidden from the public list until an admin
-approves them via `POST /api/admin/tributes/:id` (`Authorization: Bearer $ADMIN_TOKEN`);
-there's also a hard `DELETE`. Never expose pending tributes on public endpoints.
-
-## Media pipeline
-Bulk media is optimized locally (`sips`), synced to Spaces (`aws s3 sync`), and
-loaded into the DB via the admin API — not committed to git. Photos: convert
-HEIC/PNG→JPEG, ~1500px, portrait 3:4 (CSS crops the tile, lightbox shows full).
-Songs: `Content-Disposition: attachment` for clean downloads. After replacing
-same-key objects, purge the CDN (`doctl compute cdn flush <id> --files "…"`).
-`ADMIN_TOKEN` is `GPP` (weak/temporary — rotate before wide sharing).
+## Updating content
+Edit the JSON files and push. To add media, upload to the existing Space and
+reference the CDN URL. After replacing a same-key object, purge the CDN
+(`doctl compute cdn flush <id> --files "…"`).
 
 ## Local dev
-`server`: `npm install && npm run dev` (needs Postgres + `.env`).
-`client`: `npm install && npm run dev` (proxies `/api` → :3001). The client
-renders with static fallbacks (`src/fallback.js`) if the API is down.
-
-## Verify before committing
-- `cd client && npm run build` must pass.
-- Server: `node src/index.js` boots and `/api/health` returns `{status:"ok"}`.
+`client`: `npm install && npm run dev`. `npm run build` must pass before
+committing (it produces the per-route HTML). Serve `dist/` and open `/`,
+`/story`, `/pictures`, `/songs`, and `/tributes` directly.

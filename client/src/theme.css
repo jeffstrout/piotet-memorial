@@ -203,6 +203,8 @@ body {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--gold-accent);
+  text-decoration: none;
+  cursor: pointer;
   transition: color var(--dur) var(--ease);
 }
 .tlink .icon { width: 1.1em; height: 1.1em; }
@@ -251,6 +253,7 @@ body {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--ink-navy);
+  text-decoration: none;
 }
 .brand .icon { color: var(--gold-accent); width: 1.3em; height: 1.3em; }
 .site-nav {
@@ -258,7 +261,7 @@ body {
   flex-wrap: wrap;
   gap: clamp(1rem, 3vw, 2rem);
 }
-.site-nav button {
+.site-nav a {
   background: none;
   border: 0;
   padding: 0;
@@ -268,10 +271,11 @@ body {
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--slate);
+  text-decoration: none;
   transition: color var(--dur) var(--ease);
 }
-.site-nav button:hover,
-.site-nav button[aria-current='true'] { color: var(--gold-accent); }
+.site-nav a:hover,
+.site-nav a[aria-current='page'] { color: var(--gold-accent); }
 
 /* ── Footer ───────────────────────────────────────────────────────────────── */
 .site-footer {
@@ -642,36 +646,14 @@ body {
   color: var(--gold-accent);
 }
 
-/* ── Leave a memory (dark plaque form) ────────────────────────────────────── */
-.memory-form { display: grid; gap: 1rem; max-width: 34rem; margin: 1.5rem auto 0; text-align: left; }
-.memory-form input,
-.memory-form textarea {
-  width: 100%;
-  font-family: var(--font-body);
-  font-size: 1rem;
-  color: var(--parchment-ink);
-  background: var(--inset-panel);
-  border: 1px solid var(--gold);
-  border-radius: 0;
-  padding: 0.8rem 1rem;
-}
-.memory-form input::placeholder,
-.memory-form textarea::placeholder { color: var(--on-dark-sub-2); }
-.memory-form textarea { min-height: 7rem; resize: vertical; }
-.memory-form__count {
-  text-align: right;
-  margin-top: 0.35rem;
-  font-family: var(--font-display-caps);
-  font-size: 0.68rem;
-  letter-spacing: 0.08em;
-  color: var(--on-dark-sub-2);
-}
-.memory-form__count.is-warn { color: var(--gold-light); }
-.memory-form__status {
+/* ── Closed tribute book ──────────────────────────────────────────────────── */
+.closed-note {
+  text-align: center;
   font-family: var(--font-body);
   font-style: italic;
-  color: var(--gold-light);
-  min-height: 1.4em;
+  color: var(--muted);
+  max-width: 34rem;
+  margin: 2.2rem auto 0;
 }
 
 /* ── Story ────────────────────────────────────────────────────────────────── */
