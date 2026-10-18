@@ -48,10 +48,12 @@ the end of sheet 2 in `program.html` — remove the comment markers to bring it 
 
 - **8.5 × 11 in, portrait**, two pages on one sheet.
 - **Page 1 (front):** cover — gold star, "Celebrating the life of", circular
-  portrait, name, dates, and the site URL at the foot.
-- **Page 2 (back):** masthead, then two columns — **His Story** (left) and **Order
-  of Service** (right) — with the family gratitude line, Hospice note, and site
-  URL along the foot.
+  portrait, name, full dates, the **Service** block (celebration of life, date
+  and time, place, officiant), and the site URL at the foot.
+- **Page 2 (back):** masthead with full dates, then two columns — **His Story**
+  (left; live-site title “I just work here”, print-length obituary from the
+  bifold) and **Order of Service** (right) — with the family gratitude line,
+  Hospice note, and site URL along the foot.
 
 Print **double-sided, portrait, flip on long edge** (the usual long-edge duplex
 for a portrait letter page), **actual size / 100% — no "fit to page" scaling**.
@@ -99,16 +101,39 @@ mv page-2.pdf Program-Letter-Page2-BACK.pdf
 
 On Linux the same Chrome flags work with `google-chrome` or `chromium`.
 
-## Still to confirm (placeholders / verbatim from the reference)
+## Copy notes
 
-These notes apply to **both** formats — they share the same copy.
+The **letter** program takes its copy from this bifold and from the live site
+(`https://www.vincepiotet.com/api/site`). The bifold files are unchanged.
 
-- Obituary heading currently reads **"His Story"** (matches the website section).
-- Dates shown as years only: **1935 · 2026**. Add full month/day if wanted.
-- The service time/place and the Hospice of East Texas note are **not currently
-  printed as a full Service / Officiating block**. The Hospice "in lieu of
-  flowers" line does appear (bifold back cover; letter back footer). The parked
-  Service block lives only in the bifold HTML comment.
-- Back / footer uses a simple "With love and gratitude from the family." line —
-  swap for a favorite verse/poem/second photo if desired.
-- To adjust the cover photo crop, change `object-position` on the portrait `<img>`.
+Letter, filled:
+
+- **Dates:** February 23, 1935 · July 2, 2026. Birth is in both obituaries
+  (“born on February 23, 1935”). The death date is the site tagline, “Graduated
+  to Heaven on July 2, 2026”. The site `person.born` / `person.died` fields are
+  still years only.
+- **Service block** (front): live site plaque — “Celebration of life”, “July 25th
+  at 4:00 pm”, “Bethel Bible Church - Downtown”, “202 S. Broadway, Tyler, Texas”.
+  **Officiating: Rev. Lucas Ignacio Kabel** is only in the bifold’s parked Service
+  comment; the live site does not name an officiant. The parked block’s street
+  line (“202 S Broadway Ave / Tyler, TX 75702”) is not printed; the letter uses
+  the live site address.
+- **His Story:** eyebrow “His Story” and title “I just work here” are the live
+  site story heading. The column body is the bifold’s print-length obituary. The
+  live obituary is about 1,550 words and does not fit this sheet with the order
+  of service.
+- **Gratitude:** “With love and gratitude from our family.” — the bifold’s closing
+  line. Neither source has a verse or poem to put in its place.
+- **Hospice line** (back footer) follows the live site: “In lieu of flowers, all
+  are welcome to make a donation to The Hospice of East Texas.”
+
+Bifold, still as printed:
+
+- Dates shown as years only: **1935 · 2026**.
+- Obituary heading reads **“His Story”** (no “I just work here” title).
+- The Service / Officiating block is parked in an HTML comment in `program.html`,
+  not printed. The Hospice line on the bifold back cover is the older wording
+  (“please consider a donation”).
+- Back cover uses the same gratitude line.
+
+To adjust the cover photo crop, change `object-position` on the portrait `<img>`.

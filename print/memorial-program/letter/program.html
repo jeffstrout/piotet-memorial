@@ -43,8 +43,8 @@
   .rule .l{ flex:1; height:1px; background:linear-gradient(90deg,transparent,var(--rule-gold),transparent); }
 
   .dates{ display:flex; align-items:center; justify-content:center; gap:12px; margin:14px auto; }
-  .dates .l{ width:46px; height:1px; background:var(--rule-gold); }
-  .dates span{ font-family:var(--caps); font-weight:600; font-size:14px; letter-spacing:.14em; color:var(--gold-accent); white-space:nowrap; }
+  .dates .l{ width:46px; height:1px; background:var(--rule-gold); flex:none; }
+  .dates span{ font-family:var(--caps); font-weight:600; font-size:13px; letter-spacing:.08em; color:var(--gold-accent); white-space:nowrap; }
 
   .portrait{
     width:3.45in; height:3.45in; border-radius:50%; margin:0 auto; padding:8px;
@@ -65,6 +65,23 @@
     letter-spacing:.2em; text-indent:.2em; text-transform:uppercase;
     color:var(--gold-accent);
   }
+
+  /* Service details under the cover dates. Wording is the live site plaque;
+     officiant is the bifold's parked Service block (the site does not name one). */
+  .cover-service{ margin-top:18px; text-align:center; }
+  .cover-service .eyebrow{ display:block; }
+  .cover-service__title{
+    font-family:var(--serif); font-style:italic; font-weight:600;
+    font-size:26px; line-height:1.15; color:var(--gold-accent); margin:6px 0 8px;
+  }
+  .cover-service__when,
+  .cover-service__where,
+  .cover-service__who{
+    font-family:var(--caps); font-weight:500; font-size:12px; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--ink-navy); line-height:1.65;
+  }
+  .cover-service__who{ margin-top:10px; }
+  .cover-service__who .eyebrow{ margin-bottom:2px; letter-spacing:.22em; font-size:10px; }
 
   /* ── Back ──────────────────────────────────────────────────── */
   .sheet--back{
@@ -140,8 +157,15 @@
     <svg class="star" viewBox="0 0 24 24" style="width:16px;height:16px;margin-bottom:18px"><path d="M12 2.5 14.9 8.6 21.5 9.5 16.7 14.2 17.9 20.8 12 17.7 6.1 20.8 7.3 14.2 2.5 9.5 9.1 8.6z"/></svg>
     <p class="script" style="font-size:34px;margin-bottom:26px">Celebrating the life of</p>
     <div class="portrait"><img src="../portrait.png" alt="Vincent Piotet" style="object-position:center 32%"></div>
-    <h1 class="name" style="font-size:56px;margin-top:28px">Vincent Piotet</h1>
-    <div class="dates"><span class="l"></span><span>1935 · 2026</span><span class="l"></span></div>
+    <h1 class="name" style="font-size:52px;margin-top:22px">Vincent Piotet</h1>
+    <div class="dates"><span class="l"></span><span>February 23, 1935 · July 2, 2026</span><span class="l"></span></div>
+    <div class="cover-service">
+      <p class="eyebrow">Service</p>
+      <p class="cover-service__title">Celebration of life</p>
+      <p class="cover-service__when">July 25th at 4:00 pm</p>
+      <p class="cover-service__where">Bethel Bible Church - Downtown<br>202 S. Broadway, Tyler, Texas</p>
+      <p class="cover-service__who"><span class="eyebrow">Officiating</span>Rev. Lucas Ignacio Kabel</p>
+    </div>
   </div>
   <p class="site">www.vincepiotet.com</p>
 </div>
@@ -151,12 +175,13 @@
   <div class="mast">
     <p class="eyebrow">In loving memory of</p>
     <h2 class="name">Vincent Piotet</h2>
-    <div class="dates" style="margin:10px auto 0"><span class="l"></span><span>1935 · 2026</span><span class="l"></span></div>
+    <div class="dates" style="margin:10px auto 0"><span class="l"></span><span>February 23, 1935 · July 2, 2026</span><span class="l"></span></div>
   </div>
 
   <div class="columns">
     <div class="col col--story">
-      <h2 class="heading" style="font-size:26px;margin-bottom:10px">His Story</h2>
+      <p class="eyebrow" style="margin-bottom:4px">His Story</p>
+      <h2 class="heading" style="font-size:24px;margin-bottom:8px">&ldquo;I just work here&rdquo;</h2>
       <div class="obit">
         <p>Vincent Oscar Gustave Piotet was born on February 23, 1935, in the Canton
         de Vaud, Switzerland, the fourth of five children of Dr. Gustave Piotet and
@@ -216,7 +241,7 @@
   <div class="foot">
     <svg class="star" viewBox="0 0 24 24"><path d="M12 2.5 14.9 8.6 21.5 9.5 16.7 14.2 17.9 20.8 12 17.7 6.1 20.8 7.3 14.2 2.5 9.5 9.1 8.6z"/></svg>
     <p class="thanks">With love and gratitude<br>from our family.</p>
-    <p class="hospice">In lieu of flowers, please consider a donation to The Hospice of East Texas.</p>
+    <p class="hospice">In lieu of flowers, all are welcome to make a donation to The Hospice of East Texas.</p>
     <p class="site">www.vincepiotet.com</p>
   </div>
 </div>
