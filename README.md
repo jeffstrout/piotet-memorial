@@ -4,7 +4,9 @@
 
 A memorial website for **Vincent Piotet (1935–2026)**. Visitors can read his story,
 browse the photo gallery, listen to and download the songs he recorded, read the
-tributes that were shared, and find the service details.
+tributes that were shared, and find the service details. The home page's
+service box also embeds the YouTube recording of the memorial service
+(`service.videoId` in `client/src/data/content_blocks.json`).
 
 The visual language is a warm, classical **"engraved keepsake"** — deep navy,
 antique gold, and aged parchment in humanist serifs (Cinzel / Cormorant Garamond /
