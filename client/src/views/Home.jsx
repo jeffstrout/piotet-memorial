@@ -40,6 +40,18 @@ export default function Home({ site, songs, photos, tributes, go }) {
               <div className="plaque__row-value">{service.location}</div>
             </div>
           </div>
+          {service.videoId && (
+            <div className="plaque__video">
+              <iframe
+                src={`https://www.youtube-nocookie.com/embed/${service.videoId}`}
+                title={service.videoTitle || `Memorial service for ${person.name}`}
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              />
+            </div>
+          )}
         </div>
       </div>
 
